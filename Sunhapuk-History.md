@@ -1,3 +1,3 @@
-Today I learned how to use GitHub to collaborate with teammates, which helps manage code, track changes, and work more efficiently as a team. I also explored Docker and understood how it can be used to run and visualize systems locally on my laptop, making it easier to test and implement projects in a consistent environment.
+27 Apr 2027, I learned how to use GitHub to collaborate with teammates, which helps manage code, track changes, and work more efficiently as a team. I also explored Docker and understood how it can be used to run and visualize systems locally on my laptop, making it easier to test and implement projects in a consistent environment.
 
 In addition, I learned about tools like n8n and LM Studio, which can support building and automating systems, especially when working with AI or workflows. Overall, this helped me better understand how to choose the right tools for my projects and how to combine them effectively during implementation.
