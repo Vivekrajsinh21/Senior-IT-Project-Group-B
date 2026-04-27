@@ -1,0 +1,2 @@
+i learned about docker and docker compose at the start it was a bit hard to understand but after some practice and reading documentation it became easier. I learned how to create a dockerfile and how to use docker compose to manage multiple containers. I also learned about the different commands and options available in docker and docker compose. Overall, it was a great learning experience and I feel more confident in using these tools for my projects.
+and then n8n installation was a bit tricky and i am trying to understand that now.
