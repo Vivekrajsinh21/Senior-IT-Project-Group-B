@@ -1,0 +1,1 @@
+28 April 2027, I learned about Docker is a platform that allows us to run applications in containers. Docker Compose helps us manage multiple containers such as a web application and a database. In this example, I deployed OpenMRS, which is a medical record system, together with MySQL using a single command.
