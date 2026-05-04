@@ -28,7 +28,7 @@ Moving FastAPI into Docker:
  - Successfully set up a Dockerfile and Docker Compose to manage the project automatically.
 Solving the Localhost:
  - Understood that localhost inside Docker is different from localhost on my laptop.
- - Learned how to bridge the gap so that the code running inside Docker can talk to AI tools (like LM Studio) already running on your laptop.
+ - Learned how to bridge the gap so that the code running inside Docker can talk to AI tools (like LM Studio) already running on my laptop.
  - Learned how to properly refresh and "rebuild" the system after making changes to the code.
 Testing via Swagger:
  - Successfully opened the interactive API page (Swagger UI) in the browser to test that the system was working correctly.
