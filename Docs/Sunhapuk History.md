@@ -41,3 +41,17 @@ Planning the Fitness AI Project:
    - https://github.com/CodeWithCJ/SparkyFitness
   
 ---------------------------------------------------------------------------------------------
+5 May 2026: Project Vision, Personas, and User Stories
+- Learned about project vision and how to define the purpose of an application
+- Studied how to create a persona for a fitness application
+- Understood how personas help identify target users and their needs
+- Learned how to write user stories for user-centered design
+- Applied concepts to my own fitness application project
+- Discussed ideas with other groups
+- Explored different projects such as:
+  - Formula 1 (F1) project
+  - Safest route in Berlin application
+  - Student portal for advertisements
+-Gained new perspectives and ideas from other groups
+
+---------------------------------------------------------------------------------------------
