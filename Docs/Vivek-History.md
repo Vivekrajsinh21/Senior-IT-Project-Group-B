@@ -6,10 +6,14 @@ Docker & Docker Compose Fundamentals:
 Automation Tools:
 - n8n: Tackled the initial installation process and began foundational learning to understand its capabilities for building automated workflows.
 
+---------------------------------------------------------------------------------------------
+
 28 April 2026: Data Visualization & Analytics
 Apache Superset:
 - Explored the platform's core features and capabilities for translating complex data into clear visual insights.
 - Focused practical learning on how to actively build, manage, and customize interactive dashboards and charts.
+
+---------------------------------------------------------------------------------------------
 
 5 May 2026: Fitness AI Project - User Personas & Scenario Design
 User Persona Development:
