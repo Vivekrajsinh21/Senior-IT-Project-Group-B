@@ -23,3 +23,10 @@ User Persona Development:
 Scenario Mapping & Gap Analysis:
 - Drafted practical use-case scenarios for each persona, covering key features like text-based workout logging, Vision AI meal tracking, and API step integration.
 - Identified potential system limitations and gaps for each scenario, such as missing biological data, inaccurate image recognition, and subjective user input.
+
+Discussed ideas with other groups
+- Explored different projects such as:
+  - Formula 1 (F1) project
+  - Safest route in Berlin application
+  - Student portal for advertisements
+
