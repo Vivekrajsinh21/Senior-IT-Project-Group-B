@@ -1,3 +1,12 @@
-27- April 2026: I learned about docker and docker compose at the start it was a bit hard to understand but after some practice and reading documentation it became easier. I learned how to create a dockerfile and how to use docker compose to manage multiple containers. I also learned about the different commands and options available in docker and docker compose. Overall, it was a great learning experience and I feel more confident in using these tools for my projects and then n8n installation was a bit tricky and i am trying to understand that now.
+27 April 2026: Containerization & Workflow Automation
+Docker & Docker Compose Fundamentals:
+-Overcame initial learning curves through hands-on practice and documentation review to understand container management.
+-Learned to create Dockerfiles from scratch and utilized Docker Compose to successfully orchestrate multiple containers.
+-Explored various commands and configuration options, building the confidence to implement these tools in future project architectures.
+Automation Tools:
+-n8n: Tackled the initial installation process and began foundational learning to understand its capabilities for building automated workflows.
 
-28 April 2026: learning about apache superset and how to use it for data visualization. I am trying to understand the different features and capabilities of superset and how to create dashboards and charts using it.
+28 April 2026: Data Visualization & Analytics
+Apache Superset:
+-Explored the platform's core features and capabilities for translating complex data into clear visual insights.
+-Focused practical learning on how to actively build, manage, and customize interactive dashboards and charts.
