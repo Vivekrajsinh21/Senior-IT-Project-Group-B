@@ -1,8 +1,8 @@
 The Vision Template
 
-- FOR busy professionals and high-performance athletes
-- WHO struggle with tedious manual data entry and generic fitness tracking that fails to account for demanding sport-specific workloads.
-- THE ApexAI Trainer (you can swap in your own project name here) IS A data-driven, conversational AI fitness ecosystem
-- THAT utilizes natural language processing and vision AI to instantly log complex workout schemas, calculate total volume-load, and prescribe evidence-based recovery protocols.
-- UNLIKE traditional fitness apps like MyFitnessPal or rigid, non-interactive step-trackers,
-- OUR PRODUCT acts as an elite sports scientist in your pocket, seamlessly aggregating wearable step data and chat inputs to optimize peak athletic stamina for demanding weekend matches and daily health.
+- FOR individuals across all fitness levels—from active seniors and busy professionals to high-performance athletes—
+- WHO struggle with the friction of manual data entry, cluttered user interfaces, and rigid tracking tools that fail to adapt to their unique lifestyles.
+- THE App IS A personalized, conversational AI health and fitness ecosystem
+- THAT uses natural language processing, vision AI, and automatic wearable syncing to eliminate data-entry barriers, providing actionable insights that range from simple daily step encouragement to advanced athletic recovery protocols.
+- UNLIKE traditional apps like MyFitnessPal or standard generic trackers that force users to navigate complex menus,
+- OUR PRODUCT adapts entirely to the user's technical comfort and physical needs, acting as both a frictionless daily accountability partner and an elite sports scientist through one intuitive, highly accessible chat interface.
