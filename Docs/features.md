@@ -1,30 +1,8 @@
-Core FEATURES 
-1. User Authentication
-    - Register
-    - Login
-    - JWT Authentication
-
-2. Workout Tracking
-Users can:
-  - add exercises
-  - sets/reps/weight
-  - view workout history
-
-3. Nutrition Logging (Optional)
-Users can:
-   - log meals
-   - track calories/protein
-
-4. AI Chatbot (Main Selling Point)
-Example:
-    "I trained legs today and feel very tired."
-AI responds:
-    "You may need more recovery. Consider reducing intensity tomorrow and increasing protein intake."
-This single feature gives huge academic value.
-
-5. Simple Dashboard / Analytics
- Show:
-   total workouts
- calories
-   protein intake
-   weekly progress
+Features (Extracted from Stories)
+These are the core, independent features that make up your application:
+Conversational NLP Engine: A backend service that parses natural language chat messages into structured JSON database logs.
+Vision AI Meal Scanner: Integration with a multimodal LLM to analyze food photos and query nutritional APIs for macros.
+Background Biometric Sync: Secure API integration with Apple HealthKit / Google Health Connect to pull daily step counts automatically.
+Dynamic Volume-Load Analytics: A background calculator that aggregates workout data to track physical fatigue and readiness over time.
+Generative Coaching Feedback: Dynamic, context-aware responses from the AI based on the user's specific goals and recent activity history.
+Secure JWT Authentication: An encrypted user login system to protect privacy and separate individual database records.
