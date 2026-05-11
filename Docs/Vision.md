@@ -1,6 +1,6 @@
 The Vision Template
 
-- FOR individuals across all fitness levels—from active seniors and busy professionals to high-performance athletes—
+- FOR individuals across all fitness levels from active seniors and busy professionals to high-performance athletes—
 - WHO struggle with the friction of manual data entry, cluttered user interfaces, and rigid tracking tools that fail to adapt to their unique lifestyles.
 - THE App IS A personalized, conversational AI health and fitness ecosystem
 - THAT uses natural language processing, vision AI, and automatic wearable syncing to eliminate data-entry barriers, providing actionable insights that range from simple daily step encouragement to advanced athletic recovery protocols.
