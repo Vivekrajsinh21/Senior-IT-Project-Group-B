@@ -59,14 +59,14 @@ Planning the Fitness AI Project:
 Our group discussed and updated the progress of our AI Fitness Application project. We reviewed the overall project direction, system planning, and development preparation.
 
 Completed Tasks
-✅ Group members finalized
-✅ Vision statement completed
-✅ Persona design completed
-✅ User scenarios completed
-✅ Architecture Design using Docker Compose
-✅ User stories planning
-✅ Application feature planning
-✅ Sprint timetable and project schedule
+ - Group members finalized
+ - Vision statement completed
+ - Persona design completed
+ - User scenarios completed
+ - Architecture Design using Docker Compose
+ - User stories planning
+ - Application feature planning
+ - Sprint timetable and project schedule
 
 and I have learned about
  - how to set up the development environment using GitHub and Visual Studio Code
