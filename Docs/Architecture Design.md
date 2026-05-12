@@ -1,3 +1,12 @@
+Architecture Overview
+
+Frontend: React Native Mobile Application
+Backend: Node.js + Express REST API
+Database: MongoDB
+AI Workflow Engine: Langflow
+LLM Services: Gemini / OpenAI APIs
+
+
 ┌────────────────────────────────────┐
 │        AI Fitness App              │
 │         (React Native)             │

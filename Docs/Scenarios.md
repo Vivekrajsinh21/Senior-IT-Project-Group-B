@@ -1,15 +1,26 @@
-1. Scenario: Leo (The Young Adult)
-(Objective) Leo needs to optimize his gym recovery so he can maintain peak physical performance for his weekend cricket matches. (Actors) Leo, a university student and amateur athlete, (Activities) finishes a heavy leg day at the university gym. Walking to his next lecture, he opens the app and texts the AI: "Just did 5 sets of 5 squats at 120kg. How should I recover for my game on Saturday?" (Problem / Gap) Standard fitness apps only log the weight lifted but do not correlate that fatigue with his upcoming sport-specific performance demands. (Resolution) The AI parses his workout, calculates the total volume-load, and responds with a tailored active recovery protocol, suggesting specific stretching routines and a targeted protein intake for the next 48 hours to ensure his legs are fresh for the match.
-Gap Identified (Task 7): If Leo forgets to log his sleep quality or hydration levels over the next 48 hours, the system's recovery advice might be mathematically sound but biologically inaccurate for his actual state of fatigue.
+AI Fitness App – User Stories
 
-2. Scenario: Sarah (The Middle-Aged Adult)
-(Objective) Sarah wants to accurately track her daily calories without spending more than 30 seconds doing it. (Actors) Sarah, a busy project manager, (Activities) is rushing between afternoon meetings and grabs a pre-packaged chicken salad and a smoothie from a local cafe. She opens the chat interface, snaps a quick photo of her meal, and hits send without typing anything. (Problem / Gap) Sarah does not have the time or patience to manually search through a food database for "chicken," "lettuce," and "smoothie" while navigating a cluttered UI. (Resolution) The system uses vision AI to identify the food items, queries a nutrition API for the estimated macros, and automatically adds the calories to her daily total, sending back a simple confirmation message: "Logged! You have 600 calories remaining today."
-Gap Identified (Task 7): The vision AI might struggle to accurately estimate portion sizes or hidden ingredients (like heavy oils or dressings) from a single 2D photograph, leading to undercounted calories.
+1. Leo – University Student & Amateur Athlete
+   - He wants recovery advice after heavy gym workouts before his weekend cricket matches.
+   - He chats with the AI after training and asks how to recover faster.
+   - The AI analyzes his workout load and suggests recovery tips, stretching, and protein intake.
+   Problem: if Leo forgets to log sleep or hydration, the recovery advice may not fully match his real condition.
 
-3. Scenario: Robert (The Older Adult)
-(Objective) Robert wants to ensure he is meeting his doctor's cardiovascular health goals without having to learn complex software. (Actors) Robert, a retired teacher, (Activities) returns home from his morning walk through the park. He sits in his armchair, opens the fitness app, and simply types, "Did I do enough walking today?" (Problem / Gap) Traditional apps require Robert to navigate through multiple tabs and interpret complex bar graphs to find his daily activity, which frustrates and intimidates him. (Resolution) The backend silently queries the Google Health Connect API to read his phone's step counter. The AI chatbot then replies in a friendly, conversational tone: "You hit 7,500 steps this morning, Robert! That is a great walk and puts you right on track for your daily heart health goal."
-Gap Identified (Task 7): If Robert forgets to take his phone with him on his walk, the step counter will read zero. The AI might mistakenly tell him he is being inactive, which could discourage him.
+2. Sarah – Busy Working Adult
+   - She wants to track calories quickly without manually searching foods.
+   - She takes a photo of her meal and sends it to the AI.
+   - The system detects the food, estimates calories, and updates her daily intake automatically.
+   Problem: the AI may miscalculate portion sizes or hidden ingredients from photos.
 
-4. Scenario: Marcus (The High-Performance Athlete)
-(Objective) Marcus needs to analyze his explosive training load and adjust his daily calorie intake to ensure maximum stamina for an upcoming professional match. (Actors) Marcus, a high-performance athlete, (Activities) finishes an intense fast-bowling training block and gym session. He opens the app and types, "Did 6 sets of heavy power cleans at 90kg, RPE 8." He then uploads a photo of his post-workout meal. (Problem / Gap) Marcus struggles to manually calculate his total daily energy expenditure because standard apps do not synthesize his high-intensity lifting volume with his background daily steps to prescribe exact macronutrient targets. (Resolution) The system reads his workout, automatically pulls his step count via API, calculates his total energy expenditure, and replies: "High volume-load today. Based on your meal photo, you are still under your carbohydrate target by 60g. Consume more to replenish glycogen stores before Sunday."
-Gap Identified (Task 7): Rate of Perceived Exertion (RPE) is subjective. If Marcus underreports his fatigue out of stubbornness, the AI might prescribe a workout for the following day that pushes him into overtraining.
+   
+3. Robert – Older Adult
+   - He wants an easy way to check if he meets his daily walking goals.
+   - He simply asks the AI if he walked enough today.
+   - The app reads his step count from Health Connect and gives a simple response.
+   Problem: if he forgets his phone during the walk, the app may show incorrect activity data.
+
+4. Marcus – High-Performance Athlete
+   - He wants to balance training load and nutrition before competitions.
+   - He logs his workout and uploads a meal photo.
+   - The AI combines workout intensity, steps, and nutrition data to recommend calorie and carb intake.
+   Problem: if Marcus reports his fatigue inaccurately, the AI may suggest too much training and increase overtraining risk.
