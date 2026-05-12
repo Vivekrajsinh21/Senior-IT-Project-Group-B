@@ -10,8 +10,8 @@ Automation & AI Tools:
  - LM Studio: Studied for local AI model integration and development.
 Tool Selection:
  - Gained a better understanding of how to evaluate and combine different tools to build effective project architectures.
-
 ---------------------------------------------------------------------------------------------
+
 28 April 2026: Containerization & Multi-Container Management
 Docker Fundamentals:
  - Defined Docker as a platform that packages and runs applications inside isolated containers.
@@ -20,8 +20,8 @@ Docker Compose:
  - Practical Implementation:
  - Successfully deployed OpenMRS (Medical Record System) alongside a MySQL database.
  - Demonstrated the efficiency of using a single command (docker-compose up) to spin up an entire application stack.
-
 ---------------------------------------------------------------------------------------------
+
 4 May 2026: Connecting FastAPI with Local Tools using Docker
 Moving FastAPI into Docker:
  - Learned how to take a Python FastAPI project and run it inside a Docker container.
@@ -39,8 +39,8 @@ Planning the Fitness AI Project:
    - https://hub.docker.com/r/aronwk/wger 
    - https://hub.docker.com/r/ennoluto/workout-tracker
    - https://github.com/CodeWithCJ/SparkyFitness
-  
 ---------------------------------------------------------------------------------------------
+
 11 May 2026: Project management update
 
   Our group discussed and updated the progress of our AI Fitness Application project. We reviewed the overall project direction, system planning, and development preparation.
@@ -59,5 +59,17 @@ Completed Tasks for doing mid-term presentation
  - User stories planning
  - Application feature planning
  - Sprint timetable and project schedule
+---------------------------------------------------------------------------------------------
 
+12 May 2026: How to implementation our project by Langflow
+- Learned how to run Langflow
+- locally on a laptop using Docker and Langflow.
+- Practiced using Docker commands to start and manage Langflow containers.
+- Learned how port mapping works in Docker, especially when running Langflow on port 7860.
+- Understood how to access Langflow through a local browser using localhost.
+- Explored how local AI services such as Ollama and LiteLLM can connect with Langflow.
+- Learned how Docker containers communicate with services running on the host machine.
+- Practiced troubleshooting Docker issues such as “port already allocated” errors.
+- Learned how to stop, restart, and manage running Docker containers using terminal commands.
+- Gained hands-on experience building and testing AI workflows directly on a personal laptop environment.
 ---------------------------------------------------------------------------------------------
