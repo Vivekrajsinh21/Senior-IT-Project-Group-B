@@ -51,3 +51,11 @@ Completed Tasks for doing mid-term presentation
  - Application feature planning
  - Sprint timetable and project schedule
 
+ ------------------------------------------------------------------------------------------
+
+12 May 2026: LLMs
+- Practiced using Docker commands to start and manage Langflow containers.
+- Explored how local AI services such as Ollama and LiteLLM can connect with Langflow.
+- Learned how Docker containers communicate with services running on the host machine.
+- Gained hands-on experience building and testing AI workflows directly on a personal laptop environment
+-  
