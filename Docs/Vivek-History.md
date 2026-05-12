@@ -30,3 +30,24 @@ Discussed ideas with other groups
   - Safest route in Berlin application
   - Student portal for advertisements
 
+------------------------------------------------------------------------------------------
+
+  11 May 2026: Project management update
+
+  Our group discussed and updated the progress of our AI Fitness Application project. We reviewed the overall project direction, system planning, and development preparation.
+- Learned how to set up the development environment using GitHub and Visual Studio Code
+- Explored the structure of the existing fitness application project
+- Discussed how AI features can improve the fitness application experience
+- Learned the basic system architecture of mobile app, backend server, database, and AI integration
+- Planned the overall development workflow and project structure for the mid semester presentation
+
+Completed Tasks for doing mid-term presentation
+ - Group members finalized
+ - Vision statement completed
+ - Persona design completed
+ - User scenarios completed
+ - Architecture Design using Docker Compose
+ - User stories planning
+ - Application feature planning
+ - Sprint timetable and project schedule
+
