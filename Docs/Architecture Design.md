@@ -1,5 +1,5 @@
 ┌────────────────────────────────────┐
-│        SparkyFitness App           │
+│        AI Fitness App           │
 │         (React Native)             │
 │------------------------------------│
 │ Existing Features:                 │
