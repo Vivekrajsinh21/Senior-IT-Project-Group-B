@@ -1,41 +1,97 @@
-Timetable for Sprints
-    Since you are bypassing the need to build the boilerplate, your timeline shifts dramatically. You will spend Sprint 1 understanding and modifying the existing codebase, and Sprint 2 building the actual AI features.
-(Aligned with your course's 8-Phase schedule)
+AI Fitness App – Project Timeline
 
-Phase 2: System Architecture (May 4 – May 12)
-Status: 🔄 Wrapping up.
-Apex Tasks: Finalizing the architectural plan for how your custom AI modules will wire into the existing SparkyFitness Docker infrastructure.
+Phase 1 — Project Planning
+📅 April 20 – May 3
 
-Phase 3: Sprint 1 — Codebase Assimilation (May 18 – May 27)
-Focus: Taking control of the open-source foundation.
-Apex Tasks: * Fork the SparkyFitness repository and successfully spin up the Docker containers locally.
-Map and understand the existing MongoDB database schemas and API routes.
-Locate and remove the legacy "SparkyAI" beta module to create a blank architectural slate for your engine.
-Deliverable: Sprint 1 Demo (Showing the base app running locally with the old AI completely stripped out).
+Tasks:
+ - Define project objectives and scope
+ - Research AI fitness applications and related technologies
+ - Select SparkyFitness as the project prototype
+ - Create user personas and user stories
+ - Plan system requirements and core features 
+Deliverable: Project proposal and requirement analysis
+-----------------------------------------------------------------
 
-Phase 4: Sprint 2 — Feature Injection (Jun 1 – Jun 9)
-Focus: Building and integrating the Master's level features.
-Apex Tasks: * Build the custom Node.js/LLM bridge for advanced NLP JSON extraction.
-Implement the Vision-AI nutrition tracking logic.
-Extend the MongoDB schema to accept the new Volume-Load and RPE metrics.
-Deliverable: Midterm Demo (A working prototype demonstrating the new, highly technical AI processing a complex workout and meal photo).
+Phase 2 — System Architecture Design
+📅 May 4 – May 12
 
-Phase 5: User Validation (Jun 15 – Jun 23)
-Focus: Usability testing.
-Apex Tasks: Test the AI's natural language understanding with real users (matching your Leo, Sarah, Robert, and Marcus personas) to see how accurately it parses different typing styles and slang.
-Deliverable: User Testing Report.
+Tasks:
+ - Design overall system architecture
+ - Plan integration between:
+   - React Native mobile app
+   - Node.js + Express backend
+   - MongoDB database
+   - Langflow AI workflow
+   - Gemini/OpenAI APIs
+ - Design API structure for AI chatbot and nutrition analysis
+ - Prepare Docker environment for development
+Deliverable: Final architecture design and workflow diagram
+-----------------------------------------------------------------
 
-Phase 6: Productization (Jun 29 – Jul 13)
-Focus: Deployment of your modified fork.
-Apex Tasks: Finalize the Docker containers, secure all custom API keys (LLM providers, nutrition databases), and deploy the application to a live server.
-Deliverable: Deployed System.
+Sprint Timeline
+Phase 3 — Sprint 1: Prototype Setup & Code Understanding
+📅 May 18 – May 27
 
-Phase 7: Final Sprint & Docs (Jul 14 – Aug 3)
-Focus: Advanced analytics and academic reporting.
-Apex Tasks: Build the UI for the "Gym Readiness" score and Volume-Load charts. Write the technical report, explicitly detailing the architectural changes you made to the base repository.
-Deliverable: Final Report.
+Focus: Understanding and customizing the SparkyFitness prototype.
 
-Phase 8: Final Presentations (Aug 10 – Aug 17)
-Focus: Formal panel presentation.
-Apex Tasks: Rehearse the live demonstration of the extended capabilities.
-Deliverable: Final Presentation.
+Tasks:
+ - Fork and run the SparkyFitness project locally
+ - Configure Docker containers
+ - Study existing APIs and MongoDB structure
+ - Understand workout and nutrition modules
+ - Prepare the codebase for AI feature integration
+Deliverable: Working prototype running locally
+-----------------------------------------------------------------
+
+Phase 4 — Sprint 2: AI Feature Development
+📅 June 1 – June 9
+
+Focus: Building AI-powered fitness features.
+Tasks:
+ - Develop AI chatbot feature
+ - Build AI API Gateway using Node.js
+ - Integrate Gemini/OpenAI APIs
+ - Implement nutrition image analysis
+ - Create recovery recommendation system
+ - ⭐ Mid-Term Presentation (9 June 2026)
+Deliverable:  AI prototype with chatbot and nutrition tracking
+-----------------------------------------------------------------
+
+Phase 5 — User Testing & Validation
+📅 June 15 – June 23
+
+Focus: Testing usability and AI accuracy.
+Tasks:
+ - Test the chatbot with different user personas
+ - Validate nutrition and recovery recommendations
+ - Evaluate natural language understanding
+ - Collect user feedback and improve responses
+Deliverable: User testing and validation report
+-----------------------------------------------------------------
+
+Phase 6 — Deployment & System Optimization
+📅 June 29 – July 13
+
+Focus: Preparing the application for deployment.
+
+Tasks:
+ - Optimize backend and database performance
+ - Finalize Docker configuration
+ - Secure API keys and environment variables
+ - Deploy the application to a live server
+Deliverable: Deployed AI Fitness application
+-----------------------------------------------------------------
+
+Phase 7 — Final Sprint & Documentation
+📅 July 14 – August 3
+
+Focus: Completing advanced features and project documentation.
+
+Tasks:
+ - Build Gym Readiness Score dashboard
+ - Create workout analytics and charts
+ - Improve UI and user experience
+ - Write technical documentation and final report
+ - ⭐ Final Presentation
+Deliverable: Final system and complete report
+-----------------------------------------------------------------
