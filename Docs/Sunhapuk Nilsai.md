@@ -61,7 +61,7 @@ Completed Tasks for doing mid-term presentation
  - Sprint timetable and project schedule
 ---------------------------------------------------------------------------------------------
 
-12 May 2026: How to implementation our project by Langflow
+12 May 2026: How to implement our project by Langflow
 - Learned how to run Langflow
 - locally on a laptop using Docker and Langflow.
 - Practiced using Docker commands to start and manage Langflow containers.
@@ -72,4 +72,19 @@ Completed Tasks for doing mid-term presentation
 - Practiced troubleshooting Docker issues such as “port already allocated” errors.
 - Learned how to stop, restart, and manage running Docker containers using terminal commands.
 - Gained hands-on experience building and testing AI workflows directly on a personal laptop environment.
+---------------------------------------------------------------------------------------------
+
+18 May 2026: How to implement our project by Langflow (2)
+1. Data Ingestion & Web Scraping
+   - Targeting URLs: Learned how to point an AI pipeline to specific web links to fetch live or unstructured content recursively using depth controls.
+   - Data Structuring: Discovered how to take raw webpage content and convert/clean it using table operations or data structuring components.
+2. Text Processing & Chunking
+   - Text Splitting: Learned that LLMs have context limits, requiring long web articles to be broken down into smaller, digestible blocks (Chunk Size).
+   - Context Retention: Understood the importance of Chunk Overlap to ensure critical information isn't cut in half between two chunks.
+3. Vector Databases & Embeddings
+   - Vector Embeddings: Learned how to use embedding models (like Qwen/Ollama/DeepSeek) to convert text chunks into numerical vectors that capture the semantic meaning of the words.
+   - Vector Storage: Discovered how to save these vectors into a specialized database (like Chroma DB) so the AI can perform lightning-fast semantic searches later.
+4. API Creation & Model Integration
+   - Connecting Local Models: Learned how to hook up your processed database to powerful open-source models like Ollama and DeepSeek.
+   - Exposing the Pipeline: Understood how to turn this entire visual flow into a functional API endpoint, allowing other applications to send questions, search your database, and get AI-generated answers based on your collected data.
 ---------------------------------------------------------------------------------------------
