@@ -90,14 +90,14 @@ Completed Tasks for doing mid-term presentation
 ---------------------------------------------------------------------------------------------
 
 19 May 2026: Connecting langflow with our projects
-Reviewed and updated project progress with the team.
-Finalized the group members and confirmed the vision statement.
-Discussed and designed the initial system architecture using Docker Compose.
-Completed persona and scenario preparation for the project.
-Continued defining user stories and identifying key system features.
-Worked on connecting an LLM to an external application workflow using Langflow.
-Explored API integration concepts and tested API connectivity using Postman.
-Learned how authentication and session handling work when connecting services.
-Investigated how to configure API requests and connect tools within Langflow.
-Planned the next development activities and sprint timeline.
+   - Reviewed and updated project progress with the team.
+   - Finalized the group members and confirmed the vision statement.
+   - Discussed and designed the initial system architecture using Docker Compose.
+   - Completed persona and scenario preparation for the project.
+   - Continued defining user stories and identifying key system features.
+   - Worked on connecting an LLM to an external application workflow using Langflow.
+   - Explored API integration concepts and tested API connectivity using Postman.
+   - Learned how authentication and session handling work when connecting services.
+   - Investigated how to configure API requests and connect tools within Langflow.
+   - Planned the next development activities and sprint timeline.
 ---------------------------------------------------------------------------------------------
