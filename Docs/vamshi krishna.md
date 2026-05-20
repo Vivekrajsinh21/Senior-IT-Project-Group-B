@@ -21,15 +21,22 @@ As a practical use case, I tested the system by scraping information from the MD
 
 ## 18 May 2026: Implementing Our Project Using Langflow 
 
-Data Collection & Web Scraping
-Website Crawling: Learned how to configure an AI workflow to collect information from selected URLs, including recursive scraping with adjustable depth settings.
-Data Formatting: Explored methods to clean, organize, and structure raw webpage data using tables and preprocessing components.
-Text Handling & Chunk Management
-Chunking Large Text: Understood the need to divide lengthy articles into smaller sections because of LLM context limitations.
-Maintaining Context: Learned how chunk overlap helps preserve continuity so that important information is not lost between text segments.
-Embeddings & Vector Databases
-Generating Embeddings: Learned to use embedding models such as Qwen, Ollama, and DeepSeek to transform text into semantic vector representations.
-Vector Storage: Explored storing these embeddings in vector databases like Chroma DB for efficient semantic search and retrieval.
-API Development & Model Integration
-Integrating Local AI Models: Learned how to connect processed vector databases with local open-source models including Ollama and DeepSeek.
-Pipeline Deployment: Understood how to expose the complete Langflow pipeline as an API endpoint so external applications can query the database and receive AI-powered responses based on the collected data
+## Data Collection & Web Scraping
+. Website Crawling: Learned how to configure an AI workflow to collect information from selected URLs, including recursive scraping with adjustable depth settings.
+
+. Data Formatting: Explored methods to clean, organize, and structure raw webpage data using tables and preprocessing components.
+
+ ## Text Handling & Chunk Management
+. Chunking Large Text: Understood the need to divide lengthy articles into smaller sections because of LLM context limitations.
+
+. Maintaining Context: Learned how chunk overlap helps preserve continuity so that important information is not lost between text segments.
+
+## Embeddings & Vector Databases
+. Generating Embeddings: Learned to use embedding models such as Qwen, Ollama, and DeepSeek to transform text into semantic vector representations.
+
+. Vector Storage: Explored storing these embeddings in vector databases like Chroma DB for efficient semantic search and retrieval.
+
+## API Development & Model Integration
+. Integrating Local AI Models: Learned how to connect processed vector databases with local open-source models including Ollama and DeepSeek.
+
+. Pipeline Deployment: Understood how to expose the complete Langflow pipeline as an API endpoint so external applications can query the database and receive AI-powered responses based on the collected data
