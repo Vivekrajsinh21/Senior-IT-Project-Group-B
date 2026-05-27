@@ -57,10 +57,10 @@ Completed Tasks for doing mid-term presentation
 - Practiced using Docker commands to start and manage Langflow containers.
 - Explored how local AI services such as Ollama and LiteLLM can connect with Langflow.
 - Learned how Docker containers communicate with services running on the host machine.
-
+- Gained hands-on experience building and testing AI workflows directly on a personal laptop environment
  ------------------------------------------------------------------------------------------
 
 27 May 2026: Mcp
 - Lern to add Mcp Server in Llm.
-- Gained hands-on experience building and testing AI workflows directly on a personal laptop environment
+
 -  
