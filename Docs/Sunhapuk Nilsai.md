@@ -101,3 +101,15 @@ Completed Tasks for doing mid-term presentation
    - Investigated how to configure API requests and connect tools within Langflow.
    - Planned the next development activities and sprint timeline.
 ---------------------------------------------------------------------------------------------
+27 May 2026: MCP Server
+Learned the basic concept of MCP (Model Context Protocol) Server.
+Understood how MCP Server enables communication between AI models and external tools.
+Explored the architecture and workflow of MCP Server.
+Learned how MCP standardizes tool connections for AI applications.
+Practiced setting up and running an MCP Server environment.
+Understood how MCP Server handles requests and responses between systems.
+Explored how AI agents can use MCP tools dynamically.
+Learned the benefits of MCP for scalability and modular AI development.
+Discussed the role of MCP in building intelligent workflow systems.
+Improved understanding of integrating MCP Server with AI platforms such as Langflow.
+---------------------------------------------------------------------------------------------
