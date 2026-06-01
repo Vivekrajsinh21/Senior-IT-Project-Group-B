@@ -40,7 +40,8 @@ API Development & Model Integration
 . Integrating Local AI Models: Learned how to connect processed vector databases with local open-source models including Ollama and DeepSeek.
 
 . Pipeline Deployment: Understood how to expose the complete Langflow pipeline as an API endpoint so external applications can query the database and receive AI-powered responses based on the collected data
-#27 may 2026 : implementing of mcp
+
+# 27 may 2026 : implementing of mcp
 * Learned the fundamentals of MCP (Model Context Protocol) Server and its role in connecting AI models with external tools.
 * Explored the architecture and workflow of MCP Server, including request and response handling.
 * Understood how MCP standardizes communication between AI applications and external systems.
