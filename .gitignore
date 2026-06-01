@@ -1,0 +1,11 @@
+# Ignore environment variables
+.env
+sparkyfitness/.env
+
+# Ignore temporary database storage
+sparkyfitness/postgresql/
+**/postgresql/
+
+# Ignore Python caches
+__pycache__/
+*.pyc
