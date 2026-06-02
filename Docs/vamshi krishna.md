@@ -52,7 +52,7 @@ API Development & Model Integration
 * Investigated the integration of MCP Server with AI platforms such as Langflow.
 * Gained hands-on experience in understanding MCP-based tool connectivity and orchestration.
 
-* # 1 June 2026: DNS, Webhooks, and Passwordless Authentication**
+* # 1 June 2026: DNS, Webhooks, and Passwordless Authentication
 
 * **Dynamic DNS & Server Configuration:** Configured a server and mapped it to a custom domain using Dynamic DNS (DDNS) services such as Dynv6 and DuckDNS, enabling reliable remote access despite changing public IP addresses.
 
