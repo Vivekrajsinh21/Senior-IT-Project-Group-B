@@ -102,14 +102,22 @@ Completed Tasks for doing mid-term presentation
    - Planned the next development activities and sprint timeline.
 ---------------------------------------------------------------------------------------------
 27 May 2026: MCP Server
-Learned the basic concept of MCP (Model Context Protocol) Server.
-Understood how MCP Server enables communication between AI models and external tools.
-Explored the architecture and workflow of MCP Server.
-Learned how MCP standardizes tool connections for AI applications.
-Practiced setting up and running an MCP Server environment.
-Understood how MCP Server handles requests and responses between systems.
-Explored how AI agents can use MCP tools dynamically.
-Learned the benefits of MCP for scalability and modular AI development.
-Discussed the role of MCP in building intelligent workflow systems.
-Improved understanding of integrating MCP Server with AI platforms such as Langflow.
+   - Learned the basic concept of MCP (Model Context Protocol) Server.
+   - Understood how MCP Server enables communication between AI models and external tools.
+   - Explored the architecture and workflow of MCP Server.
+   - Learned how MCP standardizes tool connections for AI applications.
+   - Practiced setting up and running an MCP Server environment.
+   - Understood how MCP Server handles requests and responses between systems.
+   - Explored how AI agents can use MCP tools dynamically.
+   - Learned the benefits of MCP for scalability and modular AI development.
+   - Discussed the role of MCP in building intelligent workflow systems.
+   - Improved understanding of integrating MCP Server with AI platforms such as Langflow.
+---------------------------------------------------------------------------------------------
+1 June 2026: DNS, Webhook and Passwordless
+  1. Dynamic DNS & Server Configuration:
+     - Set up a server and linked it to a domain name using Dynamic DNS (DDNS) providers like dynv6.com and DuckDNS.
+  2. Webhook Integration:
+     - Learned how to create and implement webhooks to enable automated, real-time communication and event triggers between different applications or systems.
+  3. Passwordless SSH Authentication:
+     - Configured Secure Shell (SSH) to allow secure remote logins without requiring a password, typically by generating and exchanging SSH key pairs (public and private keys).
 ---------------------------------------------------------------------------------------------
