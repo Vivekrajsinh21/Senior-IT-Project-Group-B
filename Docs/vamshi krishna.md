@@ -51,3 +51,12 @@ API Development & Model Integration
 * Discussed the use of MCP in intelligent workflow automation and system integration.
 * Investigated the integration of MCP Server with AI platforms such as Langflow.
 * Gained hands-on experience in understanding MCP-based tool connectivity and orchestration.
+
+* **1 June 2026: DNS, Webhooks, and Passwordless Authentication**
+
+* **Dynamic DNS & Server Configuration:** Configured a server and mapped it to a custom domain using Dynamic DNS (DDNS) services such as Dynv6 and DuckDNS, enabling reliable remote access despite changing public IP addresses.
+
+* **Webhook Integration:** Implemented webhooks to facilitate automated, real-time communication between applications, enabling event-driven workflows and seamless system integration.
+
+* **Passwordless SSH Authentication:** Set up secure passwordless SSH access by generating and configuring public/private SSH key pairs, improving both security and convenience for remote server management.
+
