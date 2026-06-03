@@ -121,3 +121,17 @@ Completed Tasks for doing mid-term presentation
   3. Passwordless SSH Authentication:
      - Configured Secure Shell (SSH) to allow secure remote logins without requiring a password, typically by generating and exchanging SSH key pairs (public and private keys).
 ---------------------------------------------------------------------------------------------
+2 June 2026: ssh key, Webhook&Github and command 
+  1. SSH Key Authentication (Passwordless Login)
+     - Configured a secure method to access remote servers or Git repositories without typing a password every time.
+     - Generated a cryptographic key pair consisting of a private key (kept secure on your local machine) and a public key (uploaded to the server or GitHub).
+     - Enhances security against brute-force attacks while streamlining your workflow.
+  2. Webhooks & GitHub Integration
+     - Set up automated communication between GitHub and external services.
+     - Configured GitHub to send real-time HTTP POST payloads (events) to a specific server URL whenever an action occurs (e.g., a code push or pull request).
+     - Enables Automation and Continuous Integration (CI/CD), allowing your server to automatically pull code or trigger builds the moment you update GitHub.
+  3. Docker Commands via Terminal
+    - Learned how to manage containerized applications directly from the command line.
+    - Mastered running, stopping, and managing Docker containers using the terminal.
+    - Provides full control over your development and production environments, ensuring applications run consistently across different machines.
+---------------------------------------------------------------------------------------------
