@@ -1,4 +1,8 @@
-# Senior-IT-Project-Group-B
-1.Vivekrajsinh Vadajiya
-2.Sunhapuk Nilsai
-3. Vamshi Krishna Battu
+Group-B :
+    An AI fitness app that makes tracking health, workouts, and recovery simple through chat, smart automation, and wearable integration.
+
+  1. Vivekrajsinh Vadajiya
+
+  2. Sunhapuk Nilsai
+
+  3. Vamshi Krishna Battu 
