@@ -1,4 +1,20 @@
 services:
+  caddy:
+    image: lucaslorentz/caddy-docker-proxy:ci-alpine
+    container_name: caddy
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - CADDY_INGRESS_NETWORKS=sparkyfitness-network
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - sparkyfitness-network
+
   sparkyfitness-db:
     image: postgres:18.3-alpine
     container_name: sparkyfitness-db
@@ -16,10 +32,12 @@ services:
 
   sparkyfitness-server:
     image: codewithcj/sparkyfitness_server:latest
+    container_name: sparkyfitness-server
+    restart: always
     ports:
       - "3010:3010"
     environment:
-      SPARKY_FITNESS_LOG_LEVEL: ${SPARKY_FITNESS_LOG_LEVEL}
+      SPARKY_FITNESS_LOG_LEVEL: ${SPARKY_FITNESS_LOG_LEVEL:-info}
       ALLOW_PRIVATE_NETWORK_CORS: ${ALLOW_PRIVATE_NETWORK_CORS:-false}
       SPARKY_FITNESS_EXTRA_TRUSTED_ORIGINS: ${SPARKY_FITNESS_EXTRA_TRUSTED_ORIGINS:-}
       SPARKY_FITNESS_DB_USER: ${SPARKY_FITNESS_DB_USER:-sparky}
@@ -31,21 +49,20 @@ services:
       SPARKY_FITNESS_DB_PORT: 5432
       SPARKY_FITNESS_API_ENCRYPTION_KEY: ${SPARKY_FITNESS_API_ENCRYPTION_KEY:?Variable is required and must be set}
       BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET:?Variable is required and must be set}
-      SPARKY_FITNESS_FRONTEND_URL: ${SPARKY_FITNESS_FRONTEND_URL:-http://0.0.0.0:3004}
-      SPARKY_FITNESS_DISABLE_SIGNUP: ${SPARKY_FITNESS_DISABLE_SIGNUP}
-      SPARKY_FITNESS_ADMIN_EMAIL: ${SPARKY_FITNESS_ADMIN_EMAIL}
-      SPARKY_FITNESS_EMAIL_HOST: ${SPARKY_FITNESS_EMAIL_HOST}
-      SPARKY_FITNESS_EMAIL_PORT: ${SPARKY_FITNESS_EMAIL_PORT}
-      SPARKY_FITNESS_EMAIL_SECURE: ${SPARKY_FITNESS_EMAIL_SECURE}
-      SPARKY_FITNESS_EMAIL_USER: ${SPARKY_FITNESS_EMAIL_USER}
-      SPARKY_FITNESS_EMAIL_PASS: ${SPARKY_FITNESS_EMAIL_PASS}
-      SPARKY_FITNESS_EMAIL_FROM: ${SPARKY_FITNESS_EMAIL_FROM}
+      SPARKY_FITNESS_FRONTEND_URL: ${SPARKY_FITNESS_FRONTEND_URL:-https://apextrainer.duckdns.org}
+      SPARKY_FITNESS_DISABLE_SIGNUP: ${SPARKY_FITNESS_DISABLE_SIGNUP:-false}
+      SPARKY_FITNESS_ADMIN_EMAIL: ${SPARKY_FITNESS_ADMIN_EMAIL:-}
+      SPARKY_FITNESS_EMAIL_HOST: ${SPARKY_FITNESS_EMAIL_HOST:-}
+      SPARKY_FITNESS_EMAIL_PORT: ${SPARKY_FITNESS_EMAIL_PORT:-}
+      SPARKY_FITNESS_EMAIL_SECURE: ${SPARKY_FITNESS_EMAIL_SECURE:-}
+      SPARKY_FITNESS_EMAIL_USER: ${SPARKY_FITNESS_EMAIL_USER:-}
+      SPARKY_FITNESS_EMAIL_PASS: ${SPARKY_FITNESS_EMAIL_PASS:-}
+      SPARKY_FITNESS_EMAIL_FROM: ${SPARKY_FITNESS_EMAIL_FROM:-}
       GARMIN_MICROSERVICE_URL: http://sparkyfitness-garmin:8000
       PUID: 1000
       GUID: 1000
     networks:
       - sparkyfitness-network
-    restart: always
     depends_on:
       - sparkyfitness-db
     volumes:
@@ -54,24 +71,28 @@ services:
 
   sparkyfitness-frontend:
     image: codewithcj/sparkyfitness:latest
+    container_name: sparkyfitness-frontend
+    restart: always
     ports:
       - "3004:80"
     environment:
-      SPARKY_FITNESS_FRONTEND_URL: ${SPARKY_FITNESS_FRONTEND_URL}
+      SPARKY_FITNESS_FRONTEND_URL: ${SPARKY_FITNESS_FRONTEND_URL:-https://apextrainer.duckdns.org}
       SPARKY_FITNESS_SERVER_HOST: sparkyfitness-server
       SPARKY_FITNESS_SERVER_PORT: 3010
       PUID: 1000
       GUID: 1000
     networks:
       - sparkyfitness-network
-    restart: always
     depends_on:
       - sparkyfitness-server
+    labels:
+      caddy: apextrainer.duckdns.org
+      caddy.reverse_proxy: "{{upstreams 80}}"
 
-  # 🟢 NEW: Langflow (fixed + persistent)
   langflow:
     image: langflowai/langflow:latest
     container_name: langflow
+    restart: always
     ports:
       - "7860:7860"
     environment:
@@ -79,14 +100,17 @@ services:
       - LANGFLOW_PORT=7860
     volumes:
       - langflow_data:/app/langflow
-    restart: always
     networks:
       - sparkyfitness-network
+    labels:
+      caddy: langflow.apextrainer.duckdns.org
+      caddy.reverse_proxy: "{{upstreams 7860}}"
 
 networks:
   sparkyfitness-network:
     driver: bridge
 
-# 🟢 NEW: persistent storage for Langflow
 volumes:
   langflow_data:
+  caddy_data:
+  caddy_config:
