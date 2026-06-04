@@ -9,3 +9,21 @@ sparkyfitness/postgresql/
 # Ignore Python caches
 __pycache__/
 *.pyc
+backup/
+uploads/
+# Local environment secrets
+.env
+**/.env
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Docker/PostgreSQL local data
+postgresql/
+**/postgresql/
+backup/
+**/backup/
+uploads/
+**/uploads/
+
