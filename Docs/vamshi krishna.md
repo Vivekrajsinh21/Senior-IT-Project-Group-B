@@ -60,3 +60,14 @@ API Development & Model Integration
 
 * **Passwordless SSH Authentication:** Set up secure passwordless SSH access by generating and configuring public/private SSH key pairs, improving both security and convenience for remote server management.
 
+* # 2 June 2026 – SSH Keys, GitHub Webhooks & Docker
+. Configured SSH key authentication for secure passwordless access to servers and GitHub repositories.
+
+. Generated and managed public/private key pairs to improve security and streamline workflows.
+
+. Set up GitHub webhooks to trigger automated actions on server-side events such as code pushes and pull requests.
+
+. Learned Docker terminal commands for managing containers, including running, stopping, and monitoring containerized applications.
+
+. Gained practical experience with automation, CI/CD workflows, and container management.
+
