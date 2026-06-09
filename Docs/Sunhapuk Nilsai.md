@@ -135,3 +135,23 @@ Completed Tasks for doing mid-term presentation
     - Mastered running, stopping, and managing Docker containers using the terminal.
     - Provides full control over your development and production environments, ensuring applications run consistently across different machines.
 ---------------------------------------------------------------------------------------------
+8 June 2026: Webhook Integration and GitHub Automation
+  - Learned the fundamentals of webhooks and how they enable communication between GitHub and a remote server.
+  - Studied how GitHub webhooks can automatically trigger actions when code is pushed to a repository.
+  - Configured a webhook listener on the server to receive and process incoming GitHub events.
+  - Explored the structure and purpose of the hooks.json configuration file.
+  - Learned how webhook endpoints are defined and how commands are executed when specific events occur.
+  - Tested webhook functionality by pushing code changes to GitHub and verifying that the server received the events successfully.
+  - Reviewed security considerations such as webhook secrets and request validation and we got error about ssl.
+---------------------------------------------------------------------------------------------
+9 June 2026: Webhook Integration and GitHub Automation
+  - Server Configuration and Deployment Automation
+  - Learned how to configure and manage application services using docker-compose.yml.
+  - Studied the roles of containers, images, networks, volumes, and environment variables within Docker Compose.
+  - Reviewed how multiple services can communicate through a shared Docker network.
+  - Learned how deployment automation is implemented using a deploy.sh script.
+  - Configured deployment steps such as pulling the latest code, rebuilding containers, and restarting services.
+  - Integrated GitHub webhooks with deployment scripts to enable automatic deployment after code updates.
+  - Practiced troubleshooting deployment issues by checking logs, container status, and configuration files.
+  - Gained a better understanding of the overall CI/CD workflow, from code commit in GitHub to automated deployment on the server.
+  - we can reslove error about ssl by changing code in deploy.sh and url on Github
