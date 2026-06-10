@@ -1,11 +1,22 @@
-# Ignore environment variables
+# dependencies
+node_modules/
+
+# environment files
 .env
-sparkyfitness/.env
+.env.*
+!.env.example
 
-# Ignore temporary database storage
-sparkyfitness/postgresql/
-**/postgresql/
-
-# Ignore Python caches
+# Python cache
 __pycache__/
 *.pyc
+
+# OS files
+.DS_Store
+
+# runtime/local data
+uploads/
+backup/
+postgresql/
+
+# logs
+*.log
