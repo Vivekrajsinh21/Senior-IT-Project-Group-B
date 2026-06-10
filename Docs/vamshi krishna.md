@@ -80,4 +80,16 @@ API Development & Model Integration
 * Investigated SSL-related issues encountered during webhook setup and learned the importance of proper SSL certificate configuration.
 * Reviewed security concepts including webhook secrets and request validation.
 
+* ## 9 June 2026 – Deployment Automation & SSL Issue Resolution
+
+* Learned how to configure and manage services using `docker-compose.yml`.
+* Studied Docker components including containers, images, networks, volumes, and environment variables.
+* Explored how multiple services communicate through a shared Docker network.
+* Learned deployment automation using a `deploy.sh` script to pull code, rebuild containers, and restart services.
+* Integrated GitHub webhooks with deployment scripts for automatic deployments after code updates.
+* Resolved an SSL-related webhook issue by modifying the deployment script and updating the webhook URL configuration in GitHub.
+* Practiced troubleshooting deployment problems using logs, container status checks, and configuration reviews.
+* Gained a better understanding of the CI/CD workflow from GitHub commits to automated server deployment.
+
+
 
