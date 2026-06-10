@@ -71,3 +71,13 @@ API Development & Model Integration
 
 . Gained practical experience with automation, CI/CD workflows, and container management.
 
+## 8 June 2026 – Webhook Integration & GitHub Automation
+
+* Learned the basics of GitHub webhooks and how they enable automated communication between GitHub and a remote server.
+* Configured a webhook listener to receive GitHub events triggered by repository updates.
+* Explored the `hooks.json` configuration file and understood how webhook endpoints execute commands based on specific events.
+* Tested webhook functionality by pushing code changes and verifying event delivery to the server.
+* Investigated SSL-related issues encountered during webhook setup and learned the importance of proper SSL certificate configuration.
+* Reviewed security concepts including webhook secrets and request validation.
+
+
