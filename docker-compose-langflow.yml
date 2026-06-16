@@ -18,7 +18,7 @@ services:
       - langflow-net
       - caddy
     labels:
-      caddy: langflow.yourdomain.duckdns.org
+      caddy: langflow.apextrainer.duckdns.org
       caddy.reverse_proxy: "{{upstreams 7860}}"
 
   postgres:
@@ -43,3 +43,4 @@ networks:
     driver: bridge
   caddy:
     external: true
+ 
