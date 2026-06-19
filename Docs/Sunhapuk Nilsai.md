@@ -156,7 +156,7 @@ Completed Tasks for doing mid-term presentation
   - Gained a better understanding of the overall CI/CD workflow, from code commit in GitHub to automated deployment on the server.
   - we can reslove error about ssl by changing code in deploy.sh and url on Github
 ---------------------------------------------------------------------------------------------
-16 June 2026: Webhook Integration and GitHub Automation
+16 June 2026: Keycloak and Authentication
   - Learned how to deploy and manage Keycloak using Portainer.
   - Configured Keycloak as an Identity and Access Management (IAM) solution.
   - Created and managed realms, clients, and users within Keycloak.
