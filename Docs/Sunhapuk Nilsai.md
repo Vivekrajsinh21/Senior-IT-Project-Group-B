@@ -165,3 +165,4 @@ Completed Tasks for doing mid-term presentation
   - Learned how to set environment variables and application settings related to authentication.
   - Tested the login flow to verify that unauthorized users are redirected to the Keycloak login page.
   - Gained practical experience in securing AI applications with enterprise-style authentication mechanisms.
+  ---------------------------------------------------------------------------------------------
