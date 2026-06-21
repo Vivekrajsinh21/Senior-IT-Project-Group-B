@@ -54,12 +54,9 @@ services:
       - ${SERVER_UPLOADS_PATH:-./uploads}:/app/SparkyFitnessServer/uploads
 
   apextrainer-frontend:
-<<<<<<< HEAD
-    image: codewithcj/sparkyfitness:latest
-=======
     build:
-      context: ./SparkyFitnessFrontend
->>>>>>> Sunhapuk
+      context: .
+      dockerfile: SparkyFitnessFrontend/Dockerfile
     container_name: apextrainer-frontend
     restart: always
     ports:
@@ -100,12 +97,4 @@ networks:
     driver: bridge
 
 volumes:
-<<<<<<< HEAD
   langflow_data:
-=======
-<<<<<<< HEAD
-  langflow_data:
-=======
-  langflow_data:
->>>>>>> Sunhapuk
->>>>>>> Sunhapuk
