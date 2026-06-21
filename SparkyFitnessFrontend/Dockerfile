@@ -1,12 +1,18 @@
 FROM node:22-alpine AS build
 
+RUN corepack enable
+
+WORKDIR /app
+
+COPY shared ./shared
+COPY SparkyFitnessFrontend ./SparkyFitnessFrontend
+
+WORKDIR /app/shared
+RUN pnpm install
+
 WORKDIR /app/SparkyFitnessFrontend
-
-COPY SparkyFitnessFrontend/package*.json ./
-RUN npm install --legacy-peer-deps
-
-COPY SparkyFitnessFrontend/ .
-RUN npm run build
+RUN pnpm install
+RUN pnpm run build:dev
 
 FROM nginx:alpine
 
