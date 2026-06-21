@@ -96,4 +96,8 @@ networks:
     driver: bridge
 
 volumes:
+<<<<<<< HEAD
   langflow_data:
+=======
+  langflow_data:
+>>>>>>> Sunhapuk
