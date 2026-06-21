@@ -78,3 +78,61 @@ export * from "./constants/measurements.ts";
 export * from "./constants/calorieConstants.ts";
 export * from "./utils/timezone.ts";
 export * from "./utils/calorieCalculations.ts";
+export function calculateAge(dateOfBirth?: string | Date | null, timezone?: string): number | null {
+  if (!dateOfBirth) return null;
+  const birthDate = new Date(dateOfBirth);
+  if (Number.isNaN(birthDate.getTime())) return null;
+
+  const now = new Date();
+  let age = now.getFullYear() - birthDate.getFullYear();
+  const monthDiff = now.getMonth() - birthDate.getMonth();
+
+  if (monthDiff < 0 || (monthDiff === 0 && now.getDate() < birthDate.getDate())) {
+    age--;
+  }
+
+  return age;
+}
+
+export const CONFIDENCE_TONES = {
+  low: 'low',
+  medium: 'medium',
+  high: 'high',
+} as const;
+
+export const OVERALL_CONFIDENCE_LABELS = {
+  low: 'Low',
+  medium: 'Medium',
+  high: 'High',
+} as const;
+
+export function shouldOfferAiConversion(fromUnit?: string | null, toUnit?: string | null): boolean {
+  if (!fromUnit || !toUnit) return false;
+  return fromUnit.trim().toLowerCase() !== toUnit.trim().toLowerCase();
+}
+
+export function getConversionFactor(fromUnit?: string | null, toUnit?: string | null): number | null {
+  if (!fromUnit || !toUnit) return null;
+
+  const from = fromUnit.trim().toLowerCase();
+  const to = toUnit.trim().toLowerCase();
+
+  if (from === to) return 1;
+
+  const conversions: Record<string, number> = {
+    'g:kg': 0.001,
+    'kg:g': 1000,
+    'g:oz': 0.03527396,
+    'oz:g': 28.3495,
+    'ml:l': 0.001,
+    'l:ml': 1000,
+    'tbsp:tsp': 3,
+    'tsp:tbsp': 1 / 3,
+    'tbsp:ml': 14.7868,
+    'ml:tbsp': 1 / 14.7868,
+    'tsp:ml': 4.92892,
+    'ml:tsp': 1 / 4.92892,
+  };
+
+  return conversions[`${from}:${to}`] ?? null;
+}
