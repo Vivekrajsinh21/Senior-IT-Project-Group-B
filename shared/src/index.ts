@@ -192,3 +192,17 @@ export function computeCalorieTarget(params: any): number {
 
   return Math.round(bmr * multiplier + goalAdjustment);
 }
+import { z } from 'zod';
+
+export const aiUnitConversionRequestSchema = z.object({
+  food_name: z.string().optional(),
+  from_unit: z.string(),
+  to_unit: z.string(),
+  amount: z.number().optional(),
+});
+
+export const aiUnitConversionResponseSchema = z.object({
+  factor: z.number().nullable().optional(),
+  confidence: z.string().optional(),
+  explanation: z.string().optional(),
+});
