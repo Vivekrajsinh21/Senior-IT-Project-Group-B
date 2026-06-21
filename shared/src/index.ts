@@ -136,3 +136,59 @@ export function getConversionFactor(fromUnit?: string | null, toUnit?: string | 
 
   return conversions[`${from}:${to}`] ?? null;
 }
+export const ALL_CONVERSION_UNITS = [
+  'g',
+  'kg',
+  'oz',
+  'ml',
+  'l',
+  'tsp',
+  'tbsp',
+] as const;
+
+export const ACTIVITY_MULTIPLIERS = {
+  sedentary: 1.2,
+  lightly_active: 1.375,
+  moderately_active: 1.55,
+  very_active: 1.725,
+  extra_active: 1.9,
+} as const;
+
+export function calculateBmr(params: any): number {
+  const weightKg = Number(params?.weight_kg ?? params?.weightKg ?? params?.weight ?? 0);
+  const heightCm = Number(params?.height_cm ?? params?.heightCm ?? params?.height ?? 0);
+  const age = Number(params?.age ?? 30);
+  const sex = String(params?.sex ?? params?.gender ?? '').toLowerCase();
+
+  if (!weightKg || !heightCm) return 0;
+
+  const base = 10 * weightKg + 6.25 * heightCm - 5 * age;
+  return Math.round(sex === 'female' ? base - 161 : base + 5);
+}
+
+export function getGoalModeDeficit(goalMode?: string | null): number {
+  switch (goalMode) {
+    case 'lose_weight':
+    case 'weight_loss':
+    case 'cut':
+      return -500;
+    case 'gain_weight':
+    case 'bulk':
+      return 300;
+    default:
+      return 0;
+  }
+}
+
+export function computeCalorieTarget(params: any): number {
+  const bmr = Number(params?.bmr ?? calculateBmr(params));
+  const activityLevel = params?.activity_level ?? params?.activityLevel ?? 'sedentary';
+  const multiplier =
+    ACTIVITY_MULTIPLIERS[activityLevel as keyof typeof ACTIVITY_MULTIPLIERS] ?? 1.2;
+
+  const goalAdjustment =
+    Number(params?.goalAdjustment ?? params?.goal_adjustment ?? 0) ||
+    getGoalModeDeficit(params?.goal_mode ?? params?.goalMode);
+
+  return Math.round(bmr * multiplier + goalAdjustment);
+}
