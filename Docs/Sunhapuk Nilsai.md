@@ -102,14 +102,67 @@ Completed Tasks for doing mid-term presentation
    - Planned the next development activities and sprint timeline.
 ---------------------------------------------------------------------------------------------
 27 May 2026: MCP Server
-Learned the basic concept of MCP (Model Context Protocol) Server.
-Understood how MCP Server enables communication between AI models and external tools.
-Explored the architecture and workflow of MCP Server.
-Learned how MCP standardizes tool connections for AI applications.
-Practiced setting up and running an MCP Server environment.
-Understood how MCP Server handles requests and responses between systems.
-Explored how AI agents can use MCP tools dynamically.
-Learned the benefits of MCP for scalability and modular AI development.
-Discussed the role of MCP in building intelligent workflow systems.
-Improved understanding of integrating MCP Server with AI platforms such as Langflow.
+   - Learned the basic concept of MCP (Model Context Protocol) Server.
+   - Understood how MCP Server enables communication between AI models and external tools.
+   - Explored the architecture and workflow of MCP Server.
+   - Learned how MCP standardizes tool connections for AI applications.
+   - Practiced setting up and running an MCP Server environment.
+   - Understood how MCP Server handles requests and responses between systems.
+   - Explored how AI agents can use MCP tools dynamically.
+   - Learned the benefits of MCP for scalability and modular AI development.
+   - Discussed the role of MCP in building intelligent workflow systems.
+   - Improved understanding of integrating MCP Server with AI platforms such as Langflow.
 ---------------------------------------------------------------------------------------------
+1 June 2026: DNS, Webhook and Passwordless
+  1. Dynamic DNS & Server Configuration:
+     - Set up a server and linked it to a domain name using Dynamic DNS (DDNS) providers like dynv6.com and DuckDNS.
+  2. Webhook Integration:
+     - Learned how to create and implement webhooks to enable automated, real-time communication and event triggers between different applications or systems.
+  3. Passwordless SSH Authentication:
+     - Configured Secure Shell (SSH) to allow secure remote logins without requiring a password, typically by generating and exchanging SSH key pairs (public and private keys).
+---------------------------------------------------------------------------------------------
+2 June 2026: ssh key, Webhook&Github and command 
+  1. SSH Key Authentication (Passwordless Login)
+     - Configured a secure method to access remote servers or Git repositories without typing a password every time.
+     - Generated a cryptographic key pair consisting of a private key (kept secure on your local machine) and a public key (uploaded to the server or GitHub).
+     - Enhances security against brute-force attacks while streamlining your workflow.
+  2. Webhooks & GitHub Integration
+     - Set up automated communication between GitHub and external services.
+     - Configured GitHub to send real-time HTTP POST payloads (events) to a specific server URL whenever an action occurs (e.g., a code push or pull request).
+     - Enables Automation and Continuous Integration (CI/CD), allowing your server to automatically pull code or trigger builds the moment you update GitHub.
+  3. Docker Commands via Terminal
+    - Learned how to manage containerized applications directly from the command line.
+    - Mastered running, stopping, and managing Docker containers using the terminal.
+    - Provides full control over your development and production environments, ensuring applications run consistently across different machines.
+---------------------------------------------------------------------------------------------
+8 June 2026: Webhook Integration and GitHub Automation
+  - Learned the fundamentals of webhooks and how they enable communication between GitHub and a remote server.
+  - Studied how GitHub webhooks can automatically trigger actions when code is pushed to a repository.
+  - Configured a webhook listener on the server to receive and process incoming GitHub events.
+  - Explored the structure and purpose of the hooks.json configuration file.
+  - Learned how webhook endpoints are defined and how commands are executed when specific events occur.
+  - Tested webhook functionality by pushing code changes to GitHub and verifying that the server received the events successfully.
+  - Reviewed security considerations such as webhook secrets and request validation and we got error about ssl.
+---------------------------------------------------------------------------------------------
+9 June 2026: Webhook Integration and GitHub Automation
+  - Server Configuration and Deployment Automation
+  - Learned how to configure and manage application services using docker-compose.yml.
+  - Studied the roles of containers, images, networks, volumes, and environment variables within Docker Compose.
+  - Reviewed how multiple services can communicate through a shared Docker network.
+  - Learned how deployment automation is implemented using a deploy.sh script.
+  - Configured deployment steps such as pulling the latest code, rebuilding containers, and restarting services.
+  - Integrated GitHub webhooks with deployment scripts to enable automatic deployment after code updates.
+  - Practiced troubleshooting deployment issues by checking logs, container status, and configuration files.
+  - Gained a better understanding of the overall CI/CD workflow, from code commit in GitHub to automated deployment on the server.
+  - we can reslove error about ssl by changing code in deploy.sh and url on Github
+---------------------------------------------------------------------------------------------
+16 June 2026: Keycloak and Authentication
+  - Learned how to deploy and manage Keycloak using Portainer.
+  - Configured Keycloak as an Identity and Access Management (IAM) solution.
+  - Created and managed realms, clients, and users within Keycloak.
+  - Configured authentication settings for Langflow to require users to log-in before accessing the application.
+  - Integrated Langflow with Keycloak for centralized user authentication.
+  - Learned how to set environment variables and application settings related to authentication.
+  - Tested the login flow to verify that unauthorized users are redirected to the Keycloak login page.
+  - Gained practical experience in securing AI applications with enterprise-style authentication mechanisms.
+  ---------------------------------------------------------------------------------------------
