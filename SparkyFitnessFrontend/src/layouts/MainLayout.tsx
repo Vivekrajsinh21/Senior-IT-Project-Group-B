@@ -20,6 +20,7 @@ import {
   Cookie, // Used for Snacks
   UtensilsCrossed, // Used for Dinner
   Salad, // Used for Food Log
+  Bot, // Used for APEXTrainer
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
@@ -202,6 +203,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({
           icon: Dumbbell,
         },
         { value: '/goals', label: t('nav.goals'), icon: Target },
+        { value: '/apextrainer', label: 'APEXTrainer', icon: Bot },
         { value: '/settings', label: t('nav.settings'), icon: SettingsIcon }
       );
     } else {
@@ -334,12 +336,12 @@ const MainLayout: React.FC<MainLayoutProps> = ({
           <div className="flex items-center gap-1">
             <img
               src="/images/SparkyFitness.webp"
-              alt="SparkyFitness Logo"
+              alt="APEXTrainer Logo"
               width={54}
               height={72}
             />
             <h1 className="text-xl sm:text-2xl font-bold text-foreground dark:text-slate-300">
-              SparkyFitness
+              APEXTrainer
             </h1>
             {!isMobile && (
               <>
@@ -485,7 +487,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({
                 className="cursor-pointer underline bg-transparent border-0 p-0 text-inherit font-normal text-sm"
                 onClick={onShowAboutDialog}
               >
-                SparkyFitness v{appVersion?.version ?? ''}
+                APEXTrainer v{appVersion?.version ?? ''}
               </button>
               <span>•</span>
               <button
@@ -504,7 +506,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({
               className="cursor-pointer underline bg-transparent border-0 p-0 text-inherit font-normal text-sm"
               onClick={onShowAboutDialog}
             >
-              SparkyFitness v{appVersion?.version ?? ''}
+              APEXTrainer v{appVersion?.version ?? ''}
             </button>
             <span>•</span>
             <button

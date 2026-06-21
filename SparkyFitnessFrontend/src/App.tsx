@@ -41,6 +41,7 @@ import {
 import { error as logError } from '@/utils/logging';
 import { getUserLoggingLevel } from '@/utils/userPreferences.ts';
 import { lazyWithChunkRecovery } from '@/utils/chunkRecovery';
+
 const Auth = lazyWithChunkRecovery(() => import('@/pages/Auth/Auth'));
 const ForgotPassword = lazyWithChunkRecovery(
   () => import('@/pages/Auth/ForgotPassword')
@@ -55,6 +56,9 @@ const FoodDatabaseManager = lazyWithChunkRecovery(
   () => import('./pages/Foods/Foods')
 );
 const Reports = lazyWithChunkRecovery(() => import('./pages/Reports/Reports'));
+const APEXTrainer = lazyWithChunkRecovery(
+  () => import('./pages/APEXTrainer/APEXTrainer')
+);
 const ExerciseDatabaseManager = lazyWithChunkRecovery(
   () => import('./pages/Exercises/Exercises')
 );
@@ -120,9 +124,11 @@ const PermissionRoute = ({
 
   return <Navigate to="/" />;
 };
+
 export const ComponentFallback = () => {
   return <></>;
 };
+
 const Root = () => {
   const [showAboutDialog, setShowAboutDialog] = useState(false);
   const [latestRelease, setLatestRelease] = useState<ReleaseInfo | null>(null);
@@ -192,7 +198,7 @@ const Root = () => {
                   onError={(error, { componentStack }) => {
                     logError(
                       getUserLoggingLevel(),
-                      'DraggableChatbotButton failed:',
+                      'AboutDialog failed:',
                       error,
                       componentStack
                     );
@@ -209,7 +215,7 @@ const Root = () => {
                   onError={(error, { componentStack }) => {
                     logError(
                       getUserLoggingLevel(),
-                      'DraggableChatbotButton failed:',
+                      'NewReleaseDialog failed:',
                       error,
                       componentStack
                     );
@@ -245,6 +251,7 @@ interface OutletContextType {
 const IndexWrapper = () => {
   const { setShowAboutDialog, setShowNewReleaseDialog } =
     useOutletContext<OutletContextType>();
+
   return (
     <Index
       onShowAboutDialog={() => setShowAboutDialog(true)}
@@ -352,6 +359,11 @@ const router = createBrowserRouter([
           {
             path: 'goals',
             Component: GoalsSettings,
+            ErrorBoundary: RouteErrorBoundary,
+          },
+          {
+            path: 'apextrainer',
+            Component: APEXTrainer,
             ErrorBoundary: RouteErrorBoundary,
           },
           {
