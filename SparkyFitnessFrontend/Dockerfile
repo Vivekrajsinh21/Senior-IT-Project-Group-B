@@ -10,7 +10,7 @@ COPY SparkyFitnessFrontend ./SparkyFitnessFrontend
 RUN printf 'packages:\n  - "SparkyFitnessFrontend"\n  - "shared"\n' > pnpm-workspace.yaml
 
 WORKDIR /app
-RUN pnpm install
+RUN pnpm install --ignore-scripts
 
 WORKDIR /app/SparkyFitnessFrontend
 RUN pnpm run build:dev
