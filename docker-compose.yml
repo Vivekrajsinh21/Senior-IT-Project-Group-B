@@ -55,7 +55,8 @@ services:
 
   apextrainer-frontend:
     build:
-      context: ./SparkyFitnessFrontend
+      context: .
+      dockerfile: SparkyFitnessFrontend/Dockerfile
     container_name: apextrainer-frontend
     restart: always
     ports:
@@ -96,8 +97,4 @@ networks:
     driver: bridge
 
 volumes:
-<<<<<<< HEAD
   langflow_data:
-=======
-  langflow_data:
->>>>>>> Sunhapuk
