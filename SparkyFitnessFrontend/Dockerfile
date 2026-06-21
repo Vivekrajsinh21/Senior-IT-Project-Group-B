@@ -7,11 +7,12 @@ WORKDIR /app
 COPY shared ./shared
 COPY SparkyFitnessFrontend ./SparkyFitnessFrontend
 
-WORKDIR /app/shared
+RUN printf 'packages:\n  - "SparkyFitnessFrontend"\n  - "shared"\n' > pnpm-workspace.yaml
+
+WORKDIR /app
 RUN pnpm install
 
 WORKDIR /app/SparkyFitnessFrontend
-RUN pnpm install
 RUN pnpm run build:dev
 
 FROM nginx:alpine
