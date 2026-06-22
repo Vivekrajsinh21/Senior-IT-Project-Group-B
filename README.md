@@ -1,5 +1,5 @@
 Group-B :
-    An AI fitness app that makes tracking health, workouts, and recovery simple through chat, smart automation, and wearable integration.
+   APEXTrainer app that makes tracking health, workouts, and recovery simple through chat, smart automation, and wearable integration.
 
   1. Vivekrajsinh Vadajiya
 
