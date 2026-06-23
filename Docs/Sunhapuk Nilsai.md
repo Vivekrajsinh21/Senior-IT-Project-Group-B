@@ -166,3 +166,10 @@ Completed Tasks for doing mid-term presentation
   - Tested the login flow to verify that unauthorized users are redirected to the Keycloak login page.
   - Gained practical experience in securing AI applications with enterprise-style authentication mechanisms.
   ---------------------------------------------------------------------------------------------
+22 June 2026: Midterm Presentation
+  - ApexTrainer is an AI-powered platform that combines workout tracking, nutrition, goals, reports, and user profiles in one connected system.
+  - The project uses React, Node.js, PostgreSQL, Langflow, MCP tools, Docker, Caddy, and external nutrition APIs.
+  - A working prototype has been deployed with core features such as login, workout logging, food tracking, water tracking, and AI assistance.
+  - The current focus is improving Langflow–MCP integration, authentication, API security, testing, and personalized AI recommendations.
+  - Future development includes wearable integration, meal-photo recognition, recovery advice, smarter analytics, and AI-generated workout plans.
+  ---------------------------------------------------------------------------------------------
