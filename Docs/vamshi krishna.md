@@ -91,7 +91,7 @@ API Development & Model Integration
 * Practiced troubleshooting deployment problems using logs, container status checks, and configuration reviews.
 * Gained a better understanding of the CI/CD workflow from GitHub commits to automated server deployment.
 
-## 22 June 2026: Midterm Presentation**
+## 22 June 2026: Midterm Presentation
 
 ApexTrainer is an AI-powered fitness platform that brings workout tracking, nutrition monitoring, goal management, progress reports, and user profiles into one connected system.
 
