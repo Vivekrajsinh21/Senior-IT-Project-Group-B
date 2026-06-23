@@ -91,5 +91,18 @@ API Development & Model Integration
 * Practiced troubleshooting deployment problems using logs, container status checks, and configuration reviews.
 * Gained a better understanding of the CI/CD workflow from GitHub commits to automated server deployment.
 
+**22 June 2026: Midterm Presentation**
+
+ApexTrainer is an AI-powered fitness platform that brings workout tracking, nutrition monitoring, goal management, progress reports, and user profiles into one connected system.
+
+The project is built using React, Node.js, PostgreSQL, Langflow, MCP tools, Docker, Caddy, and external nutrition APIs.
+
+A working prototype has already been deployed with core features such as user login, workout logging, food tracking, water tracking, and AI-based assistance.
+
+The current development focus is on improving Langflow–MCP integration, strengthening authentication, enhancing API security, testing the system, and building more personalized AI recommendations.
+
+Future improvements include wearable device integration, meal-photo recognition, recovery guidance, advanced analytics, and AI-generated workout plans.
+
+
 
 
