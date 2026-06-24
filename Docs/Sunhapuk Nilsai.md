@@ -166,3 +166,18 @@ Completed Tasks for doing mid-term presentation
   - Tested the login flow to verify that unauthorized users are redirected to the Keycloak login page.
   - Gained practical experience in securing AI applications with enterprise-style authentication mechanisms.
   ---------------------------------------------------------------------------------------------
+22 June 2026: Midterm Presentation
+  - ApexTrainer is an AI-powered platform that combines workout tracking, nutrition, goals, reports, and user profiles in one connected system.
+  - The project uses React, Node.js, PostgreSQL, Langflow, MCP tools, Docker, Caddy, and external nutrition APIs.
+  - A working prototype has been deployed with core features such as login, workout logging, food tracking, water tracking, and AI assistance.
+  - The current focus is improving Langflow–MCP integration, authentication, API security, testing, and personalized AI recommendations.
+  - Future development includes wearable integration, meal-photo recognition, recovery advice, smarter analytics, and AI-generated workout plans.
+  ---------------------------------------------------------------------------------------------
+23 June 2026: Present our system to classmates and Learning about VPN
+  - Presented the ApexTrainer project and received feedback from classmates after they tested the system.
+  - Explored and evaluated other groups' projects, including SafePath, MDH BookStack, Wazuh CTI, and PitSenseAI.
+  - Discussed different approaches and features used in other teams' systems to gain new ideas for improving ApexTrainer.
+  - Learned about VPN technologies and their role in securing production environments.
+  - Studied how to use WireGuard VPN to protect internal services such as Langflow, Portainer, SSH, and databases while keeping the main website publicly accessible.
+  - Learned how to restrict access to administrative tools through VPN-only connections to improve system security and reduce the attack surface.
+  ---------------------------------------------------------------------------------------------
