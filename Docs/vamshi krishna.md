@@ -60,3 +60,80 @@ API Development & Model Integration
 
 * **Passwordless SSH Authentication:** Set up secure passwordless SSH access by generating and configuring public/private SSH key pairs, improving both security and convenience for remote server management.
 
+* # 2 June 2026 – SSH Keys, GitHub Webhooks & Docker
+. Configured SSH key authentication for secure passwordless access to servers and GitHub repositories.
+
+. Generated and managed public/private key pairs to improve security and streamline workflows.
+
+. Set up GitHub webhooks to trigger automated actions on server-side events such as code pushes and pull requests.
+
+. Learned Docker terminal commands for managing containers, including running, stopping, and monitoring containerized applications.
+
+. Gained practical experience with automation, CI/CD workflows, and container management.
+
+## 8 June 2026 – Webhook Integration & GitHub Automation
+
+* Learned the basics of GitHub webhooks and how they enable automated communication between GitHub and a remote server.
+* Configured a webhook listener to receive GitHub events triggered by repository updates.
+* Explored the `hooks.json` configuration file and understood how webhook endpoints execute commands based on specific events.
+* Tested webhook functionality by pushing code changes and verifying event delivery to the server.
+* Investigated SSL-related issues encountered during webhook setup and learned the importance of proper SSL certificate configuration.
+* Reviewed security concepts including webhook secrets and request validation.
+
+* ## 9 June 2026 – Deployment Automation & SSL Issue Resolution
+
+* Learned how to configure and manage services using `docker-compose.yml`.
+* Studied Docker components including containers, images, networks, volumes, and environment variables.
+* Explored how multiple services communicate through a shared Docker network.
+* Learned deployment automation using a `deploy.sh` script to pull code, rebuild containers, and restart services.
+* Integrated GitHub webhooks with deployment scripts for automatic deployments after code updates.
+* Resolved an SSL-related webhook issue by modifying the deployment script and updating the webhook URL configuration in GitHub.
+* Practiced troubleshooting deployment problems using logs, container status checks, and configuration reviews.
+* Gained a better understanding of the CI/CD workflow from GitHub commits to automated server deployment.
+
+## 22 June 2026: Midterm Presentation
+
+ApexTrainer is an AI-powered fitness platform that brings workout tracking, nutrition monitoring, goal management, progress reports, and user profiles into one connected system.
+
+The project is built using React, Node.js, PostgreSQL, Langflow, MCP tools, Docker, Caddy, and external nutrition APIs.
+
+A working prototype has already been deployed with core features such as user login, workout logging, food tracking, water tracking, and AI-based assistance.
+
+The current development focus is on improving Langflow–MCP integration, strengthening authentication, enhancing API security, testing the system, and building more personalized AI recommendations.
+
+Future improvements include wearable device integration, meal-photo recognition, recovery guidance, advanced analytics, and AI-generated workout plans.
+
+## 23 June 2026:  VPN Architecture
+
+During today’s session, we presented the current ApexTrainer prototype, including login, workout logging, food tracking, water tracking, dashboard features, and AI assistance. We also discussed the project with other teams and received feedback on the user experience and feature flow. Some users signed up and tested the platform, which helped us understand how real users interact with the application.
+
+We also studied how VPN-based architecture can improve our project security. We focused on WireGuard as a secure access layer. In a real deployment, ApexTrainer can run on a remote server using Docker Compose, while developers connect through WireGuard VPN to access internal services such as the backend API, PostgreSQL database, Langflow, admin tools, and monitoring tools.
+
+Proposed architecture:
+
+```text
+Developer Laptop
+      ↓ WireGuard VPN Tunnel
+Project Server
+      ↓ Docker Network
+Frontend / Backend API / PostgreSQL / Langflow / Caddy
+```
+
+After connecting to WireGuard, the developer laptop receives a private VPN IP and can access the project through the server’s private VPN IP. This helps keep internal services private and accessible only to authorized developers.
+
+Current focus areas:
+
+* Improve Langflow and MCP tool integration
+* Strengthen authentication and API security
+* Test signup and login flow
+* Improve dashboard user experience
+* Explore secure deployment using WireGuard VPN
+* Add personalized AI recommendations
+
+Future improvements include wearable integration, meal-photo recognition, recovery advice, smarter analytics, and AI-generated workout plans.
+
+
+
+
+
+
