@@ -1,29 +1,35 @@
-# Ignore environment variables
+# Environment variables
 .env
-sparkyfitness/.env
+.env.*
+!.env.example
 
-# Ignore temporary database storage
-sparkyfitness/postgresql/
-**/postgresql/
+# Dependencies
+node_modules/
+**/node_modules/
 
-# Ignore Python caches
-__pycache__/
-*.pyc
-backup/
+# Frontend build output
+dist/
+build/
+coverage/
+
+# Runtime and local data
 uploads/
-# Local environment secrets
-.env
-**/.env
-
-# macOS
-.DS_Store
-**/.DS_Store
-
-# Docker/PostgreSQL local data
+backup/
 postgresql/
 **/postgresql/
-backup/
-**/backup/
-uploads/
-**/uploads/
 
+# Python caches
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# OS and editor files
+.DS_Store
+.vscode/
+.idea/
