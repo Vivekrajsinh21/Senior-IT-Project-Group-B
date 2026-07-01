@@ -181,3 +181,30 @@ Completed Tasks for doing mid-term presentation
   - Studied how to use WireGuard VPN to protect internal services such as Langflow, Portainer, SSH, and databases while keeping the main website publicly accessible.
   - Learned how to restrict access to administrative tools through VPN-only connections to improve system security and reduce the attack surface.
   ---------------------------------------------------------------------------------------------
+29 June 2026: – VPN Study and Planning
+  - Studied the purpose of VPNs in protecting internal project services.
+  - Compared three VPN solutions: WireGuard, OpenVPN, and Headscale.
+  - Selected WireGuard because it is lightweight, fast, modern, and suitable for Docker-based deployment.
+  - Planned the network separation between public and private services.
+  - Defined the public service:
+    - https://apextrainer.duckdns.org/
+  - Defined the VPN-only services:
+    - https://portainer.apextrainer.duckdns.org
+    - https://langflow.apextrainer.duckdns.org
+  - Reviewed the client-to-server VPN connection and the default WireGuard UDP port 51820.
+  - Planned to use Caddy as the reverse proxy for domain routing and access control.
+  ---------------------------------------------------------------------------------------------
+30 June 2026 – WireGuard Installation and Testing
+  - Installed WireGuard as a Docker container on the project server.
+  - Created WireGuard client configuration files for team members.
+  - Imported the WireGuard configuration into the client device.
+  - Tested the VPN connection and confirmed that the client could reach the VPN server.
+  - Configured Caddy to allow access to Portainer and Langflow only from the VPN network.
+  - Confirmed that users without a VPN connection receive a “VPN access required” message.
+  - Confirmed that Portainer and Langflow are accessible after connecting to WireGuard.
+  - Kept the main ApexTrainer website publicly accessible through the normal internet.
+  - Final access design:
+    - Public Internet: https://apextrainer.duckdns.org/
+    - VPN Only: https://portainer.apextrainer.duckdns.org
+    - VPN Only: https://langflow.apextrainer.duckdns.org
+  ---------------------------------------------------------------------------------------------
