@@ -1,11 +1,26 @@
 import { useState } from 'react';
 import { Bot, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useActiveUser } from '@/contexts/ActiveUserContext';
 
 const LANGFLOW_URL =
-  'https://langflow.apextrainer.duckdns.org/api/v1/run/23d67d60-5dff-4cc8-95f1-b6b16184f9a2?stream=false';
+  'https://langflow.apextrainer.duckdns.org/api/v1/run/apextrainer-fitness-rag?stream=false';
 
-const LANGFLOW_API_KEY = 'sk-oY6MYkUvGePZkp8-v25JHqboFX3JdBR6uRGerRZhGUI';
+// Demo only: do not commit a real API key to GitHub.
+// For production, move this key to the backend .env and call /api/ai/chat instead.
+const LANGFLOW_API_KEY = 'lf_83db394c39afef523a299458b0c81b5bdd05770478bdcc521c593a362229ccfa';
+
+function getLangflowMessage(data: any): string {
+  return (
+    data?.outputs?.[0]?.outputs?.[0]?.results?.message?.text ||
+    data?.outputs?.[0]?.outputs?.[0]?.results?.message?.data?.text ||
+    data?.outputs?.[0]?.outputs?.[0]?.artifacts?.message ||
+    data?.outputs?.[0]?.outputs?.[0]?.outputs?.message?.message?.text ||
+    data?.message ||
+    data?.text ||
+    ''
+  );
+}
 
 export default function APEXTrainer() {
   const [question, setQuestion] = useState('search nutrition of banana');
@@ -13,12 +28,21 @@ export default function APEXTrainer() {
   const [loading, setLoading] = useState(false);
 
   const askApexTrainer = async () => {
-    if (!question.trim()) return;
+    const userQuestion = question.trim();
+
+    if (!userQuestion) {
+      setAnswer('Please enter a question first.');
+      return;
+    }
 
     setLoading(true);
     setAnswer('');
 
+    const { activeUserId } = useActiveUser();
+
     try {
+      const sessionId = `user-id-${activeUserId}-${Date.now()}`;
+
       const response = await fetch(LANGFLOW_URL, {
         method: 'POST',
         headers: {
@@ -28,20 +52,34 @@ export default function APEXTrainer() {
         body: JSON.stringify({
           output_type: 'chat',
           input_type: 'chat',
-          input_value: question,
-          session_id: `apextrainer-${Date.now()}`,
+          input_value: userQuestion,
+          session_id: sessionId,
         }),
       });
 
-      const data = await response.json();
+      const data = await response.json().catch(() => null);
 
-      const text =
-        data?.outputs?.[0]?.outputs?.[0]?.results?.message?.text ||
-        data?.outputs?.[0]?.outputs?.[0]?.artifacts?.message ||
-        'No response from APEXTrainer.';
+      if (!response.ok) {
+        const errorMessage =
+          data?.detail ||
+          data?.message ||
+          data?.error ||
+          `Langflow request failed with status ${response.status}`;
+
+        setAnswer(`Langflow error: ${errorMessage}`);
+        return;
+      }
+
+      const text = getLangflowMessage(data);
+
+      if (!text) {
+        setAnswer('No response from APEXTrainer.');
+        return;
+      }
 
       setAnswer(String(text));
-    } catch {
+    } catch (error) {
+      console.error('APEXTrainer connection error:', error);
       setAnswer('Failed to connect to Langflow.');
     } finally {
       setLoading(false);
@@ -65,6 +103,7 @@ export default function APEXTrainer() {
         value={question}
         onChange={(e) => setQuestion(e.target.value)}
         placeholder="Ask ApexTrainer anything..."
+        disabled={loading}
       />
 
       <Button
