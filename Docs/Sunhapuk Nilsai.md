@@ -208,3 +208,43 @@ Completed Tasks for doing mid-term presentation
     - VPN Only: https://portainer.apextrainer.duckdns.org
     - VPN Only: https://langflow.apextrainer.duckdns.org
   ---------------------------------------------------------------------------------------------
+6 July 2026 – Integrating Langflow with Langfuse
+  - Learned how to integrate Langflow with Langfuse for AI monitoring.
+  - Configured Langflow to send conversation traces to Langfuse.
+  - Connected the application using Langfuse API credentials.
+  - Verified that user interactions were successfully logged.
+  - Understood how Langfuse tracks:
+    - User prompts
+    - AI responses
+    - Execution traces
+    - Workflow performance
+  - Tested the integration by sending sample prompts from the AI assistant.
+  - Learned the importance of observability for AI applications.
+  ---------------------------------------------------------------------------------------------
+13 July 2026 – Monitoring and Analyzing AI Conversations
+  - Explored the Langfuse dashboard for monitoring AI interactions.
+  - Learned how to analyze conversation history and execution traces.
+  - Monitored key performance indicators, including:
+    - Response quality
+    - Token usage
+    - Request latency
+  - Model execution time
+  - Learned how Langfuse helps identify workflow failures and unexpected AI responses.
+  - Used trace information to debug AI workflows more effectively.
+  ---------------------------------------------------------------------------------------------
+14 July 2026 – Connecting Langflow with the ApexTrainer Website
+  - Learned how to integrate the ApexTrainer website with Langflow.
+  - Configured the frontend and backend to communicate with Langflow using its API Key.
+  - Implemented secure authentication for API requests between ApexTrainer and Langflow.
+  - Connected user prompts from the ApexTrainer chat interface to Langflow.
+  - Configured Langflow so that all prompts and AI responses were automatically forwarded to Langfuse for monitoring.
+  - Verified that conversations initiated from the ApexTrainer website were successfully logged in the Langfuse dashboard.
+  - Learned how Langflow acts as the middleware between the web application and the AI workflow.
+  - Understood the complete architecture:
+    - User submits a question on the ApexTrainer website.
+    - The request is sent to Langflow using the API Key.
+    - Langflow processes the AI workflow.
+    - Conversation traces are automatically recorded in Langfuse.
+    - The AI response is returned to the ApexTrainer website.
+  - Tested the end-to-end integration to ensure the AI assistant, Langflow, and Langfuse worked together correctly.
+  ---------------------------------------------------------------------------------------------
