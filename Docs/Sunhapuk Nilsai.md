@@ -248,3 +248,17 @@ Completed Tasks for doing mid-term presentation
     - The AI response is returned to the ApexTrainer website.
   - Tested the end-to-end integration to ensure the AI assistant, Langflow, and Langfuse worked together correctly.
   ---------------------------------------------------------------------------------------------
+20 July 2026 – Update progress in the class
+  - Presented the ApexTrainer project and explained the current development progress to the lecturer.
+  - Demonstrated how Langflow is used to build and manage the AI fitness trainer chatbot.
+  - Explained the connection between Langflow and Langfuse for prompt management, tracing, and monitoring chatbot interactions.
+  - Learned that Langflow was using an SQLite database stored inside the container.
+  - Identified that flows could disappear when the Langflow container was removed or recreated.
+  - Moved the SQLite database to /app/langflow/langflow.db, which is connected to a persistent Docker volume.
+  - Updated docker-compose-langflow.yml so Langflow always uses the persistent database location.
+  - Preserved the existing LANGFLOW_SECRET_KEY in the .env file so saved credentials and API keys continue working.
+  - Tested the configuration by restarting Langflow and confirmed that the flows remained available.
+  - Learned the difference between a container filesystem and a Docker volume: container data may disappear after recreation, while volume data remains persistent.
+  - Confirmed that Langflow is now managed through the separate docker-compose-langflow.yml file.
+  - Backed up the existing database before making changes to prevent data loss.
+---------------------------------------------------------------------------------------------
