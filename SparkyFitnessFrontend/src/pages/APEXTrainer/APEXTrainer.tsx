@@ -1,110 +1,38 @@
 import { useState } from 'react';
 import { Bot, Send } from 'lucide-react';
+import { v4 as uuidv4 } from 'uuid';
 import { Button } from '@/components/ui/button';
-import { useActiveUser } from '@/contexts/ActiveUserContext';
 
-/*
- * Copy the exact URL from:
- * Langflow → Share → API Access
- *
- * Example:
- * https://langflow.apextrainer.duckdns.org/api/v1/run/<FLOW_ID>?stream=false
- */
-const LANGFLOW_URL =
-  import.meta.env.VITE_LANGFLOW_URL?.trim() ?? '';
+const CONVERSATION_STORAGE_KEY =
+  'apextrainer:ai-conversation-id';
 
-/*
- * Demo only:
- * VITE environment variables are included in the browser bundle.
- * For production, the Langflow request should be moved to the backend.
- */
-const LANGFLOW_API_KEY =
-  import.meta.env.VITE_LANGFLOW_API_KEY?.trim() ?? '';
-
-/*
- * Component ID shown in Langflow API Access.
- */
-const USER_CONTEXT_COMPONENT_ID =
-  'CustomComponent-M3tu3';
-
-function getLangflowMessage(data: any): string {
-  return (
-    data?.outputs?.[0]?.outputs?.[0]?.results?.message?.text ||
-    data?.outputs?.[0]?.outputs?.[0]?.results?.message?.data?.text ||
-    data?.outputs?.[0]?.outputs?.[0]?.artifacts?.message ||
-    data?.outputs?.[0]?.outputs?.[0]?.outputs?.message?.message?.text ||
-    data?.message ||
-    data?.text ||
-    ''
-  );
+interface GatewayResponse {
+  answer?: string;
+  detail?: string;
+  conversation_id?: string;
 }
 
-function getLangflowError(data: any, status: number): string {
-  const error =
-    data?.detail ??
-    data?.message ??
-    data?.error;
+function getOrCreateConversationId(): string {
+  const existingConversationId =
+    window.sessionStorage.getItem(
+      CONVERSATION_STORAGE_KEY,
+    );
 
-  if (typeof error === 'string') {
-    return error;
+  if (existingConversationId) {
+    return existingConversationId;
   }
 
-  if (error) {
-    try {
-      return JSON.stringify(error);
-    } catch {
-      // Use the fallback error message below.
-    }
-  }
-
-  return `Langflow request failed with status ${status}`;
-}
-
-/*
- * The same user keeps the same session while using
- * the current browser tab.
- *
- * Closing the tab creates a new conversation session.
- */
-function getOrCreateLangflowSessionId(
-  userId: string,
-): string {
-  const storageKey =
-    `apextrainer:langflow-session:${userId}`;
-
-  const existingSession =
-    window.sessionStorage.getItem(storageKey);
-
-  if (existingSession) {
-    return existingSession;
-  }
-
-  const randomPart =
-    typeof crypto !== 'undefined' &&
-    typeof crypto.randomUUID === 'function'
-      ? crypto.randomUUID()
-      : `${Date.now()}-${Math.random()
-          .toString(36)
-          .slice(2)}`;
-
-  const newSessionId =
-    `apextrainer:${userId}:${randomPart}`;
+  const conversationId = uuidv4();
 
   window.sessionStorage.setItem(
-    storageKey,
-    newSessionId,
+    CONVERSATION_STORAGE_KEY,
+    conversationId,
   );
 
-  return newSessionId;
+  return conversationId;
 }
 
 export default function APEXTrainer() {
-  const { activeUserId } = useActiveUser();
-
-  /*
-   * Use "context check" while testing the User Context component.
-   * You can change this later.
-   */
   const [question, setQuestion] =
     useState('context check');
 
@@ -119,139 +47,92 @@ export default function APEXTrainer() {
       return;
     }
 
-    if (
-      activeUserId === null ||
-      activeUserId === undefined ||
-      String(activeUserId).trim() === ''
-    ) {
-      setAnswer(
-        'No active user was found. Please log in or select a user first.',
-      );
-      return;
-    }
-
-    if (!LANGFLOW_URL) {
-      setAnswer(
-        'Langflow URL is not configured. Add VITE_LANGFLOW_URL to the frontend environment file.',
-      );
-      return;
-    }
-
-    if (!LANGFLOW_API_KEY) {
-      setAnswer(
-        'Langflow API key is not configured. Add VITE_LANGFLOW_API_KEY to the frontend environment file.',
-      );
-      return;
-    }
-
     setLoading(true);
     setAnswer('');
 
+    const controller = new AbortController();
+
+    const timeoutId = window.setTimeout(
+      () => controller.abort(),
+      120000,
+    );
+
     try {
-      const activeUserIdString =
-        String(activeUserId);
-
-      /*
-       * Same user + same browser tab = same chat session.
-       */
-      const sessionId =
-        getOrCreateLangflowSessionId(
-          activeUserIdString,
-        );
-
-      const requestBody = {
-        input_value: userQuestion,
-        input_type: 'chat',
-        output_type: 'chat',
-
-        /*
-         * Used by Langflow message history and memory.
-         */
-        session_id: sessionId,
-
-        /*
-         * Runtime parameters passed to:
-         * CustomComponent-M3tu3
-         */
-        tweaks: {
-          [USER_CONTEXT_COMPONENT_ID]: {
-            apextrainer_user_id:
-              activeUserIdString,
-
-            langflow_session_id:
-              sessionId,
-          },
-        },
-      };
-
-      console.log('Sending Langflow request:', {
-        input_value: userQuestion,
-        session_id: sessionId,
-        apextrainer_user_id:
-          activeUserIdString,
-        component_id:
-          USER_CONTEXT_COMPONENT_ID,
-      });
+      const conversationId =
+        getOrCreateConversationId();
 
       const response = await fetch(
-        LANGFLOW_URL,
+        '/api/ai/chat',
         {
           method: 'POST',
+
+          /*
+           * Send the Better Auth session cookie
+           * to the same-origin backend.
+           */
+          credentials: 'include',
+
           headers: {
             'Content-Type': 'application/json',
-            'x-api-key': LANGFLOW_API_KEY,
           },
-          body: JSON.stringify(requestBody),
+
+          signal: controller.signal,
+
+          body: JSON.stringify({
+            message: userQuestion,
+            conversation_id: conversationId,
+          }),
         },
       );
 
-      const responseText =
-        await response.text();
+      const data = (await response
+        .json()
+        .catch(() => ({}))) as GatewayResponse;
 
-      let data: any = null;
+      if (response.status === 401) {
+        setAnswer(
+          'Your login session has expired. Please sign in again.',
+        );
+        return;
+      }
 
-      if (responseText) {
-        try {
-          data = JSON.parse(responseText);
-        } catch {
-          data = {
-            text: responseText,
-          };
-        }
+      if (response.status === 429) {
+        setAnswer(
+          data.detail ??
+            'Too many requests. Please wait and try again.',
+        );
+        return;
       }
 
       if (!response.ok) {
-        const errorMessage =
-          getLangflowError(
-            data,
-            response.status,
-          );
-
         setAnswer(
-          `Langflow error: ${errorMessage}`,
+          data.detail ??
+            `AI Gateway request failed with status ${response.status}.`,
         );
         return;
       }
 
-      const text =
-        getLangflowMessage(data);
-
-      if (!text) {
-        console.warn(
-          'Unexpected Langflow response:',
-          data,
-        );
-
+      if (!data.answer) {
         setAnswer(
-          'Langflow completed the request but returned no readable message.',
+          'The AI Gateway returned no readable answer.',
         );
         return;
       }
 
-      setAnswer(String(text));
+      setAnswer(data.answer);
     } catch (error) {
+      if (
+        error instanceof DOMException &&
+        error.name === 'AbortError'
+      ) {
+        setAnswer(
+          'The AI request timed out. Please try again.',
+        );
+        return;
+      }
+
       console.error(
-        'APEXTrainer connection error:',
+        'APEXTrainer AI Gateway error:',
         error,
       );
 
@@ -259,6 +140,7 @@ export default function APEXTrainer() {
         'Failed to connect to the APEXTrainer AI service.',
       );
     } finally {
+      window.clearTimeout(timeoutId);
       setLoading(false);
     }
   };
@@ -274,7 +156,7 @@ export default function APEXTrainer() {
           </h1>
 
           <p className="text-muted-foreground">
-            Powered by Langflow Agent + ApexTrainer APIs
+            Authenticated AI fitness assistant
           </p>
         </div>
       </div>

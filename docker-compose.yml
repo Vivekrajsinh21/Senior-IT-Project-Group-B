@@ -18,8 +18,8 @@ services:
     image: codewithcj/sparkyfitness_server:latest
     container_name: apextrainer-server
     restart: always
-    ports:
-      - "3010:3010"
+    expose:
+      - "3010"
     environment:
       SPARKY_FITNESS_LOG_LEVEL: ${SPARKY_FITNESS_LOG_LEVEL:-info}
       ALLOW_PRIVATE_NETWORK_CORS: ${ALLOW_PRIVATE_NETWORK_CORS:-false}
@@ -53,6 +53,38 @@ services:
       - ${SERVER_BACKUP_PATH:-./backup}:/app/SparkyFitnessServer/backup
       - ${SERVER_UPLOADS_PATH:-./uploads}:/app/SparkyFitnessServer/uploads
 
+  apextrainer-ai-gateway:
+    build:
+      context: ./apextrainer-ai-gateway
+      dockerfile: Dockerfile
+    container_name: apextrainer-ai-gateway
+    restart: always
+    environment:
+      AUTH_VERIFY_URL: "${AUTH_VERIFY_URL:-http://apextrainer-server:3010/api/identity/user}"
+      LANGFLOW_RUN_URL: "${LANGFLOW_RUN_URL:-http://apextrainer-langflow:7860/api/v1/run/apextrainer-chatbot?stream=false}"
+      LANGFLOW_API_KEY: "${LANGFLOW_API_KEY:?LANGFLOW_API_KEY is required}"
+      LANGFLOW_COMPONENT_ID: "${LANGFLOW_COMPONENT_ID:-CustomComponent-M3tu3}"
+      LANGFLOW_TIMEOUT_SECONDS: "${LANGFLOW_TIMEOUT_SECONDS:-120}"
+      RATE_LIMIT_PER_MINUTE: "${RATE_LIMIT_PER_MINUTE:-20}"
+    expose:
+      - "8000"
+    networks:
+      - apextrainer-network
+    depends_on:
+      - apextrainer-server
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=3)"
+        ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
   apextrainer-frontend:
     build:
       context: .
@@ -71,30 +103,11 @@ services:
       - apextrainer-network
     depends_on:
       - apextrainer-server
+      - apextrainer-ai-gateway
     labels:
       caddy: apextrainer.duckdns.org
       caddy.reverse_proxy: "{{upstreams 80}}"
 
-  langflow:
-    image: langflowai/langflow:latest
-    container_name: apextrainer-langflow
-    restart: always
-    ports:
-      - "7860:7860"
-    environment:
-      - LANGFLOW_HOST=0.0.0.0
-      - LANGFLOW_PORT=7860
-    volumes:
-      - langflow_data:/app/langflow
-    networks:
-      - apextrainer-network
-    labels:
-      caddy: langflow.apextrainer.duckdns.org
-      caddy.reverse_proxy: "{{upstreams 7860}}"
-
 networks:
   apextrainer-network:
     driver: bridge
-
-volumes:
-  langflow_data:
