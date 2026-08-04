@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Bot, Send } from 'lucide-react';
 import { v4 as uuidv4 } from 'uuid';
 import { Button } from '@/components/ui/button';
@@ -10,6 +10,22 @@ interface GatewayResponse {
   answer?: string;
   detail?: string;
   conversation_id?: string;
+}
+
+interface SessionUser {
+  id?: string;
+  name?: string | null;
+  email?: string | null;
+}
+
+interface SessionResponse {
+  user?: SessionUser;
+  data?: {
+    user?: SessionUser;
+  };
+  id?: string;
+  name?: string | null;
+  email?: string | null;
 }
 
 function getOrCreateConversationId(): string {
@@ -32,12 +48,172 @@ function getOrCreateConversationId(): string {
   return conversationId;
 }
 
+function extractAuthenticatedUser(
+  sessionData: SessionResponse | null,
+): SessionUser | null {
+  if (!sessionData) {
+    return null;
+  }
+
+  /*
+   * Normal Better Auth response:
+   * {
+   *   session: {...},
+   *   user: {
+   *     id: "...",
+   *     name: "...",
+   *     email: "..."
+   *   }
+   * }
+   */
+  if (sessionData.user) {
+    return sessionData.user;
+  }
+
+  /*
+   * Support an API response wrapped inside "data".
+   */
+  if (sessionData.data?.user) {
+    return sessionData.data.user;
+  }
+
+  /*
+   * Support an endpoint that returns the user object directly.
+   */
+  if (sessionData.id) {
+    return {
+      id: sessionData.id,
+      name: sessionData.name,
+      email: sessionData.email,
+    };
+  }
+
+  return null;
+}
+
+function getDisplayName(user: SessionUser): string {
+  const savedName = user.name?.trim();
+
+  if (savedName) {
+    /*
+     * Use the first part of the saved name.
+     * Example: "Vivek Raj" becomes "Vivek".
+     */
+    return savedName.split(/\s+/)[0] || savedName;
+  }
+
+  const emailName = user.email
+    ?.split('@')[0]
+    ?.trim();
+
+  if (emailName) {
+    return emailName;
+  }
+
+  return 'there';
+}
+
 export default function APEXTrainer() {
   const [question, setQuestion] =
     useState('context check');
 
   const [answer, setAnswer] = useState('');
   const [loading, setLoading] = useState(false);
+
+  const [welcomeMessage, setWelcomeMessage] =
+    useState(
+      'Checking your authenticated ApexTrainer account...',
+    );
+
+  /*
+   * Load the currently logged-in user when this page opens.
+   *
+   * The frontend does not send or choose a user ID.
+   * Better Auth maps the login cookie to the real user record
+   * and returns the verified user's ID and name.
+   */
+  useEffect(() => {
+    const controller = new AbortController();
+
+    const loadAuthenticatedUser = async () => {
+      try {
+        const response = await fetch(
+          '/api/auth/get-session',
+          {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+              Accept: 'application/json',
+            },
+            signal: controller.signal,
+          },
+        );
+
+        if (!response.ok) {
+          if (response.status === 401) {
+            setWelcomeMessage(
+              'Please sign in to use your personal ApexTrainer coach.',
+            );
+            return;
+          }
+
+          throw new Error(
+            `Session request failed with status ${response.status}.`,
+          );
+        }
+
+        const sessionData =
+          (await response.json()) as
+            | SessionResponse
+            | null;
+
+        const authenticatedUser =
+          extractAuthenticatedUser(sessionData);
+
+        if (!authenticatedUser?.id) {
+          setWelcomeMessage(
+            'Please sign in to use your personal ApexTrainer coach.',
+          );
+          return;
+        }
+
+        /*
+         * The ID has already been mapped to the user record
+         * by Better Auth. We use the verified user's saved name.
+         */
+        const displayName =
+          getDisplayName(authenticatedUser);
+
+        setWelcomeMessage(
+          `Hi ${displayName}! I’m your APEXTrainer coach. ` +
+            'How can I help you today?',
+        );
+      } catch (error) {
+        if (
+          error instanceof DOMException &&
+          error.name === 'AbortError'
+        ) {
+          return;
+        }
+
+        console.error(
+          'Unable to load authenticated user:',
+          error,
+        );
+
+        setWelcomeMessage(
+          'Hi! I’m your APEXTrainer coach. ' +
+            'How can I help you today?',
+        );
+      }
+    };
+
+    void loadAuthenticatedUser();
+
+    return () => {
+      controller.abort();
+    };
+  }, []);
 
   const askApexTrainer = async () => {
     const userQuestion = question.trim();
@@ -68,7 +244,7 @@ export default function APEXTrainer() {
 
           /*
            * Send the Better Auth session cookie
-           * to the same-origin backend.
+           * to the authenticated AI Gateway.
            */
           credentials: 'include',
 
@@ -78,6 +254,11 @@ export default function APEXTrainer() {
 
           signal: controller.signal,
 
+          /*
+           * Do not send user_id from the frontend.
+           * The AI Gateway gets the real user ID
+           * from the verified login session.
+           */
           body: JSON.stringify({
             message: userQuestion,
             conversation_id: conversationId,
@@ -91,7 +272,8 @@ export default function APEXTrainer() {
 
       if (response.status === 401) {
         setAnswer(
-          'Your login session has expired. Please sign in again.',
+          'Your login session has expired. ' +
+            'Please sign in again.',
         );
         return;
       }
@@ -99,7 +281,8 @@ export default function APEXTrainer() {
       if (response.status === 429) {
         setAnswer(
           data.detail ??
-            'Too many requests. Please wait and try again.',
+            'Too many requests. ' +
+              'Please wait and try again.',
         );
         return;
       }
@@ -126,7 +309,8 @@ export default function APEXTrainer() {
         error.name === 'AbortError'
       ) {
         setAnswer(
-          'The AI request timed out. Please try again.',
+          'The AI request timed out. ' +
+            'Please try again.',
         );
         return;
       }
@@ -157,6 +341,16 @@ export default function APEXTrainer() {
 
           <p className="text-muted-foreground">
             Authenticated AI fitness assistant
+          </p>
+        </div>
+      </div>
+
+      <div className="mb-4 rounded-md border bg-muted/30 p-4">
+        <div className="flex items-start gap-3">
+          <Bot className="mt-0.5 h-5 w-5 shrink-0" />
+
+          <p className="text-sm">
+            {welcomeMessage}
           </p>
         </div>
       </div>
