@@ -262,3 +262,28 @@ Completed Tasks for doing mid-term presentation
   - Confirmed that Langflow is now managed through the separate docker-compose-langflow.yml file.
   - Backed up the existing database before making changes to prevent data loss.
 ---------------------------------------------------------------------------------------------
+27 July 2026 – User Identification and Authentication for AI Chat
+  - Learned how to add and manage users within the ApexTrainer application.
+  - Studied how to track the currently logged-in user across the frontend, backend, and AI services.
+  - Learned how browser cookies can be used to identify the authenticated user during requests.
+  - Connected the user identity from the frontend to the ApexTrainer backend.
+  - Implemented a process to verify that the user is authenticated before allowing access to the AI chatbot.
+  - Learned how the backend can use the authenticated user information to retrieve the correct user profile and fitness data.
+  - Explored how user identification can be passed through the application workflow without exposing sensitive user information directly to the AI model.
+  - Improved understanding of authentication, session management, and user-specific data access in an AI-powered application.
+  - Tested the login and user-tracking flow to ensure that requests were associated with the correct user.
+  - Identified the importance of preventing unauthenticated users from directly accessing the Langflow AI endpoint.
+---------------------------------------------------------------------------------------------
+3 August 2026 – User Context and Personalized AI Chat
+  - Learned how to provide the AI chatbot with user information before starting a conversation.
+  - Implemented a user-context workflow where the authenticated user is identified before the Langflow chat process begins.
+  - Used authentication cookies to identify the logged-in user and connect the session to the corresponding user account in the ApexTrainer backend.
+  - Connected the authenticated user ID with backend data such as profile information, fitness progress, goals, and other relevant application data.
+  - Designed the workflow so that Langflow can receive the correct user context before generating an AI response.
+  - Learned how user-specific context can be used to make the AI fitness trainer provide more personalized recommendations.
+  - Improved security by preventing users who are not logged in from directly connecting to Langflow through scripts or external API requests.
+  - Added authentication checks between the ApexTrainer application, backend services, and Langflow.
+  - Tested the system to verify that an authenticated user receives their own information while unauthorized requests are rejected.
+  - Gained a better understanding of secure AI application architecture, user tracking, session-based authentication, and personalized AI conversations.
+  - Improved the overall design of ApexTrainer by making the AI assistant aware of the user's application context before providing fitness advice.
+  ---------------------------------------------------------------------------------------------
