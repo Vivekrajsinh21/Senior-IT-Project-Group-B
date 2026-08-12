@@ -1,4 +1,5 @@
 services:
+
   apextrainer-db:
     image: postgres:18.3-alpine
     container_name: apextrainer-db
@@ -24,6 +25,7 @@ services:
       SPARKY_FITNESS_LOG_LEVEL: ${SPARKY_FITNESS_LOG_LEVEL:-info}
       ALLOW_PRIVATE_NETWORK_CORS: ${ALLOW_PRIVATE_NETWORK_CORS:-false}
       SPARKY_FITNESS_EXTRA_TRUSTED_ORIGINS: ${SPARKY_FITNESS_EXTRA_TRUSTED_ORIGINS:-}
+
       SPARKY_FITNESS_DB_USER: ${SPARKY_FITNESS_DB_USER:-sparky}
       SPARKY_FITNESS_DB_HOST: ${SPARKY_FITNESS_DB_HOST:-apextrainer-db}
       SPARKY_FITNESS_DB_NAME: ${SPARKY_FITNESS_DB_NAME}
@@ -31,27 +33,36 @@ services:
       SPARKY_FITNESS_APP_DB_USER: ${SPARKY_FITNESS_APP_DB_USER:-sparkyapp}
       SPARKY_FITNESS_APP_DB_PASSWORD: ${SPARKY_FITNESS_APP_DB_PASSWORD:?Variable is required and must be set}
       SPARKY_FITNESS_DB_PORT: 5432
+
       SPARKY_FITNESS_API_ENCRYPTION_KEY: ${SPARKY_FITNESS_API_ENCRYPTION_KEY:?Variable is required and must be set}
       BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET:?Variable is required and must be set}
+
       SPARKY_FITNESS_FRONTEND_URL: ${SPARKY_FITNESS_FRONTEND_URL:-https://apextrainer.duckdns.org}
       SPARKY_FITNESS_DISABLE_SIGNUP: ${SPARKY_FITNESS_DISABLE_SIGNUP:-false}
       SPARKY_FITNESS_ADMIN_EMAIL: ${SPARKY_FITNESS_ADMIN_EMAIL:-}
+
       SPARKY_FITNESS_EMAIL_HOST: ${SPARKY_FITNESS_EMAIL_HOST:-}
       SPARKY_FITNESS_EMAIL_PORT: ${SPARKY_FITNESS_EMAIL_PORT:-}
       SPARKY_FITNESS_EMAIL_SECURE: ${SPARKY_FITNESS_EMAIL_SECURE:-}
       SPARKY_FITNESS_EMAIL_USER: ${SPARKY_FITNESS_EMAIL_USER:-}
       SPARKY_FITNESS_EMAIL_PASS: ${SPARKY_FITNESS_EMAIL_PASS:-}
       SPARKY_FITNESS_EMAIL_FROM: ${SPARKY_FITNESS_EMAIL_FROM:-}
+
       GARMIN_MICROSERVICE_URL: http://apextrainer-garmin:8000
+
       PUID: 1000
       GUID: 1000
+
     networks:
       - apextrainer-network
+
     depends_on:
       - apextrainer-db
+
     volumes:
       - ${SERVER_BACKUP_PATH:-./backup}:/app/SparkyFitnessServer/backup
       - ${SERVER_UPLOADS_PATH:-./uploads}:/app/SparkyFitnessServer/uploads
+
 
   apextrainer-ai-gateway:
     build:
@@ -59,19 +70,29 @@ services:
       dockerfile: Dockerfile
     container_name: apextrainer-ai-gateway
     restart: always
+
     environment:
       AUTH_VERIFY_URL: "${AUTH_VERIFY_URL:-http://apextrainer-server:3010/api/identity/user}"
+
       LANGFLOW_RUN_URL: "${LANGFLOW_RUN_URL:-http://apextrainer-langflow:7860/api/v1/run/apextrainer-chatbot?stream=false}"
+
       LANGFLOW_API_KEY: "${LANGFLOW_API_KEY:?LANGFLOW_API_KEY is required}"
+
       LANGFLOW_COMPONENT_ID: "${LANGFLOW_COMPONENT_ID:-CustomComponent-M3tu3}"
+
       LANGFLOW_TIMEOUT_SECONDS: "${LANGFLOW_TIMEOUT_SECONDS:-120}"
+
       RATE_LIMIT_PER_MINUTE: "${RATE_LIMIT_PER_MINUTE:-20}"
+
     expose:
       - "8000"
+
     networks:
       - apextrainer-network
+
     depends_on:
       - apextrainer-server
+
     healthcheck:
       test:
         [
@@ -85,28 +106,70 @@ services:
       retries: 3
       start_period: 10s
 
+
+  # ============================================================
+  # ApexTrainer MCP Server
+  # ============================================================
+  apextrainer-mcp:
+    build:
+      context: .
+      dockerfile: apextrainer-api-mcp/Dockerfile
+
+    container_name: apextrainer-mcp
+    restart: always
+
+    environment:
+      SPARKY_FITNESS_DB_HOST: apextrainer-db
+      SPARKY_FITNESS_DB_PORT: 5432
+      SPARKY_FITNESS_DB_NAME: ${SPARKY_FITNESS_DB_NAME:?Variable is required and must be set}
+      SPARKY_FITNESS_DB_USER: ${SPARKY_FITNESS_DB_USER:-sparky}
+      SPARKY_FITNESS_DB_PASSWORD: ${SPARKY_FITNESS_DB_PASSWORD:?Variable is required and must be set}
+
+      SPARKY_FITNESS_APP_DB_USER: ${SPARKY_FITNESS_APP_DB_USER:-sparkyapp}
+      SPARKY_FITNESS_APP_DB_PASSWORD: ${SPARKY_FITNESS_APP_DB_PASSWORD:?Variable is required and must be set}
+
+      SPARKY_FITNESS_MCP_PORT: 3001
+      MCP_TRANSPORT: http
+
+    ports:
+      - "3001:3001"
+
+    networks:
+      - apextrainer-network
+
+    depends_on:
+      - apextrainer-db
+
+
   apextrainer-frontend:
     build:
       context: .
       dockerfile: SparkyFitnessFrontend/Dockerfile
+
     container_name: apextrainer-frontend
     restart: always
+
     ports:
       - "3004:80"
+
     environment:
       SPARKY_FITNESS_FRONTEND_URL: ${SPARKY_FITNESS_FRONTEND_URL:-https://apextrainer.duckdns.org}
       SPARKY_FITNESS_SERVER_HOST: apextrainer-server
       SPARKY_FITNESS_SERVER_PORT: 3010
       PUID: 1000
       GUID: 1000
+
     networks:
       - apextrainer-network
+
     depends_on:
       - apextrainer-server
       - apextrainer-ai-gateway
+
     labels:
       caddy: apextrainer.duckdns.org
       caddy.reverse_proxy: "{{upstreams 80}}"
+
 
 networks:
   apextrainer-network:

@@ -20,3 +20,5 @@ postgresql/
 
 # logs
 *.log
+
+apextrainer-api-mcp/dist/
