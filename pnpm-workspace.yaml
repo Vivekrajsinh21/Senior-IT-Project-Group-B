@@ -1,0 +1,11 @@
+packages:
+  - 'SparkyFitnessFrontend'
+  - 'shared'
+  - 'scripts'
+  - 'apextrainer-api-mcp'
+
+allowBuilds:
+  bcrypt: true
+  esbuild: true
+  sharp: true
+  unrs-resolver: true
