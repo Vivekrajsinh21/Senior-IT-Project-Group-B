@@ -29,7 +29,6 @@ export async function updateProfile(
   });
 }
 
-
 export async function getPreferences(userId: string): Promise<Record<string, unknown>> {
   return withClient(userId, async (client) => {
     const result = await client.query(
@@ -41,13 +40,12 @@ export async function getPreferences(userId: string): Promise<Record<string, unk
   });
 }
 
-
 export async function updatePreferences(
   userId: string,
-  params: { 
-    timezone?: string; 
-    energy_unit?: string; 
-    default_weight_unit?: string; 
+  params: {
+    timezone?: string;
+    energy_unit?: string;
+    default_weight_unit?: string;
     default_measurement_unit?: string;
     default_distance_unit?: string;
     water_display_unit?: string;
@@ -55,7 +53,16 @@ export async function updatePreferences(
 ): Promise<Record<string, unknown>> {
   return withClient(userId, async (client) => {
     const result = await client.query(
-      `INSERT INTO user_preferences (user_id, timezone, energy_unit, default_weight_unit, default_measurement_unit, default_distance_unit, water_display_unit, updated_at)
+      `INSERT INTO user_preferences (
+        user_id,
+        timezone,
+        energy_unit,
+        default_weight_unit,
+        default_measurement_unit,
+        default_distance_unit,
+        water_display_unit,
+        updated_at
+      )
        VALUES ($1, $2, $3, $4, $5, $6, $7, NOW())
        ON CONFLICT (user_id) DO UPDATE SET
          timezone = COALESCE(EXCLUDED.timezone, user_preferences.timezone),
@@ -80,3 +87,69 @@ export async function updatePreferences(
   });
 }
 
+export async function getProfileSummary(
+  userId: string
+): Promise<Record<string, unknown>> {
+  return withClient(userId, async (client) => {
+    const result = await client.query(
+      `
+      SELECT
+        u.id,
+        u.name,
+        u.email,
+        u.image,
+
+        (
+          SELECT cim.weight
+          FROM check_in_measurements cim
+          WHERE cim.user_id = u.id
+            AND cim.weight IS NOT NULL
+          ORDER BY cim.entry_date DESC
+          LIMIT 1
+        ) AS latest_weight,
+
+        (
+          SELECT cim.entry_date
+          FROM check_in_measurements cim
+          WHERE cim.user_id = u.id
+            AND cim.weight IS NOT NULL
+          ORDER BY cim.entry_date DESC
+          LIMIT 1
+        ) AS latest_weight_date,
+
+        (
+          SELECT cim.height
+          FROM check_in_measurements cim
+          WHERE cim.user_id = u.id
+            AND cim.height IS NOT NULL
+          ORDER BY cim.entry_date DESC
+          LIMIT 1
+        ) AS latest_height,
+
+        (
+          SELECT cim.body_fat_percentage
+          FROM check_in_measurements cim
+          WHERE cim.user_id = u.id
+            AND cim.body_fat_percentage IS NOT NULL
+          ORDER BY cim.entry_date DESC
+          LIMIT 1
+        ) AS latest_body_fat_percentage,
+
+        up.timezone,
+        up.energy_unit,
+        up.default_weight_unit,
+        up.default_measurement_unit,
+        up.default_distance_unit,
+        up.water_display_unit
+
+      FROM "user" u
+      LEFT JOIN user_preferences up
+        ON up.user_id = u.id
+      WHERE u.id = $1
+      `,
+      [userId]
+    );
+
+    return result.rows[0] || {};
+  });
+}
