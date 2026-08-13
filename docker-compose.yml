@@ -77,6 +77,7 @@ services:
       LANGFLOW_RUN_URL: "${LANGFLOW_RUN_URL:-http://apextrainer-langflow:7860/api/v1/run/apextrainer-chatbot?stream=false}"
 
       LANGFLOW_API_KEY: "${LANGFLOW_API_KEY:?LANGFLOW_API_KEY is required}"
+      MCP_GATEWAY_JWT_SECRET: "${MCP_GATEWAY_JWT_SECRET:?MCP_GATEWAY_JWT_SECRET is required}"
 
       LANGFLOW_COMPONENT_ID: "${LANGFLOW_COMPONENT_ID:-CustomComponent-M3tu3}"
 
@@ -130,6 +131,7 @@ services:
 
       SPARKY_FITNESS_MCP_PORT: 3001
       MCP_TRANSPORT: http
+      MCP_GATEWAY_JWT_SECRET: "${MCP_GATEWAY_JWT_SECRET:?MCP_GATEWAY_JWT_SECRET is required}"
 
     ports:
       - "3001:3001"
