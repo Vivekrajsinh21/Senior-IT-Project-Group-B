@@ -9,6 +9,16 @@ import jwt
 from fastapi import FastAPI, HTTPException, Request, status
 from pydantic import BaseModel, Field
 
+from .chat_history import (
+    append_exchange,
+    create_conversation,
+    delete_conversation,
+    ensure_conversation,
+    get_conversation_messages,
+    initialize_chat_history,
+    list_conversations,
+)
+
 
 # =============================================================================
 # Configuration
@@ -102,6 +112,17 @@ app = FastAPI(
     redoc_url=None,
     openapi_url=None,
 )
+
+
+@app.on_event("startup")
+async def initialize_gateway_database() -> None:
+    """
+    Create the AI chat-history tables when the Gateway starts.
+
+    CREATE TABLE IF NOT EXISTS makes this safe to run repeatedly.
+    """
+
+    await initialize_chat_history()
 
 
 # =============================================================================
@@ -512,6 +533,96 @@ async def health() -> dict[str, str]:
 
 
 # =============================================================================
+# Authenticated chat-history endpoints
+# =============================================================================
+
+@app.get("/conversations")
+async def get_conversations(
+    request: Request,
+):
+    user_id = await get_verified_user_id(request)
+
+    return {
+        "conversations":
+            await list_conversations(user_id)
+    }
+
+
+@app.post("/conversations")
+async def new_conversation(
+    request: Request,
+):
+    user_id = await get_verified_user_id(request)
+
+    conversation = await create_conversation(
+        user_id
+    )
+
+    return {
+        "conversation": conversation
+    }
+
+
+@app.get(
+    "/conversations/{conversation_id}/messages"
+)
+async def conversation_messages(
+    conversation_id: UUID,
+    request: Request,
+):
+    user_id = await get_verified_user_id(
+        request
+    )
+
+    try:
+        messages = (
+            await get_conversation_messages(
+                user_id,
+                conversation_id,
+            )
+        )
+
+    except PermissionError as error:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Conversation not found.",
+        ) from error
+
+    return {
+        "conversation_id": conversation_id,
+        "messages": messages,
+    }
+
+
+@app.delete(
+    "/conversations/{conversation_id}"
+)
+async def remove_conversation(
+    conversation_id: UUID,
+    request: Request,
+):
+    user_id = await get_verified_user_id(
+        request
+    )
+
+    deleted = await delete_conversation(
+        user_id,
+        conversation_id,
+    )
+
+    if not deleted:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Conversation not found.",
+        )
+
+    return {
+        "deleted": True,
+        "conversation_id": conversation_id,
+    }
+
+
+# =============================================================================
 # Authenticated AI chat endpoint
 # =============================================================================
 
@@ -563,6 +674,18 @@ async def chat(
     verified_user_id = (
         await get_verified_user_id(request)
     )
+
+    try:
+        await ensure_conversation(
+            verified_user_id,
+            body.conversation_id,
+            message,
+        )
+    except PermissionError as error:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Conversation access denied.",
+        ) from error
 
     # -------------------------------------------------------------------------
     # Step 2: Apply rate limiting using the trusted authenticated user ID.
@@ -729,6 +852,19 @@ async def chat(
                 "no readable answer."
             ),
         )
+
+    try:
+        await append_exchange(
+            verified_user_id,
+            body.conversation_id,
+            message,
+            answer,
+        )
+    except PermissionError as error:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Conversation access denied.",
+        ) from error
 
     return ChatResponse(
         answer=answer,
